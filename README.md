@@ -1,1 +1,1 @@
-Kush Momaya: <a href="http://github.com/KushKM">Github</a>
+Kush Momaya: [Github](https://github.com/KushKM)
