@@ -1,1 +1,1 @@
-Arjun Bhalla <a href="https://github.com/arjunbhalla03">GitHub</a>
+Arjun Bhalla: [GitHub](https://github.com/arjunbhalla03)
