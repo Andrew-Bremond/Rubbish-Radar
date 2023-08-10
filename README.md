@@ -1,1 +1,1 @@
-Julian Gonzalez<a target="_blank" href="https://github.com/jgonz671?tab=repositories">Github</a>
+Julian Gonzalez: [Github](https://github.com/jgonz671)
