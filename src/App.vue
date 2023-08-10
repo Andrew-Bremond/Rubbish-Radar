@@ -1,9 +1,23 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+import AddGoogleMap from './components/AddGoogleMap'
+</script>
+
+<script>
+
+  export default {
+    name: 'App',
+    components: {
+      AddGoogleMap
+    }
+  }
 </script>
 
 <template>
+  <div id="app">
+    <AddGoogleMap />
+  </div>
   <header>
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
@@ -81,5 +95,15 @@ nav a:first-of-type {
     padding: 1rem 0;
     margin-top: 1rem;
   }
+
+  #app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #000000;
+  margin-top: 50px;
+  }
+
 }
 </style>
