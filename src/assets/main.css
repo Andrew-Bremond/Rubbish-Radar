@@ -18,6 +18,14 @@
   height: 100vh;
 }
 
+img {
+  height: 50%;
+  width: 50%;
+  border-style: solid;
+  border-color: hsla(160, 100%, 37%, 1);
+  border-radius: 80%;
+}
+
 a,
 .green {
   text-decoration: none;
