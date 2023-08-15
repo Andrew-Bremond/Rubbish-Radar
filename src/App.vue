@@ -1,11 +1,10 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
-import AddGoogleMap from './components/AddGoogleMap'
 </script>
 
 <script>
-
+import AddGoogleMap from './components/AddGoogleMap.vue';
   export default {
     name: 'App',
     components: {
@@ -101,7 +100,7 @@ nav a:first-of-type {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #000000;
+  color: #bb6464;
   margin-top: 50px;
   }
 
