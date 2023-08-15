@@ -4,8 +4,10 @@
 
 <template>
   <header>
-    <h1> Home </h1>
-    <p> Theoretically, elements should be consistent routing to different pages. </p>
+    <body>
+      <h1> Home </h1>
+      <p> Theoretically, elements should be consistent routing to different pages. </p>
+    </body>
   </header>
 </template>
 
