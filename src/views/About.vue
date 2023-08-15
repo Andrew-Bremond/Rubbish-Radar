@@ -5,12 +5,90 @@
 <template>
   <div class="about">
     <body>
-      <h1> Lorem Ipsum Lorem </h1>
-      <p> Testing margins to see if this displays correctly </p>
-      <h2> Testing </h2>
-      <p> Adding another paragraph </p>
-      <h3> Testing Again </h3>
-      <p> Testing consistency </p>
+      <h1> About Us </h1>
+
+      <h2> Our Story</h2>
+      <p> 
+        At Rubbish Radar, we believe in a world where waste has its rightful place. 
+        Born out of frustration from not being able to find a nearby trash 
+        can while on-the-go, we decided that no one should have to hold onto 
+        their trash any longer than necessary. From this pain point, Rubbish Radar emerged – 
+        an innovative platform that maps trash can locations from user-generated input, 
+        bridging the gap between waste and its final destination. 
+      </p>
+
+      <h2> What We Do </h2>
+      <p> 
+        We provide an easy-to-use, comprehensive web application that allows users
+        to submit and locate trash can locations. With every user's contribution, 
+        our network of trash can locations grows, making our cities and natural 
+        spaces cleaner and more enjoyable for all.
+      </p>
+
+      <h2> Our Mission </h2>
+      <p> 
+        To create a global community-driven platform where every disposed of item
+        finds its way to a garbage disposal promoting easy accessibility to our users.
+      </p>
+
+      <h2> Why Choose Rubbish Radar </h2>
+       <ul>
+        <li>
+          To create a global community-driven platform where every disposed of item finds its way to 
+          a garbage disposal promoting easy accessibility to our users.
+        </li>
+        <li>
+          User-Friendly Interface: Our web application is designed for simplicity and ease of use, 
+          ensuring that you find the nearest trash bin in seconds.
+        </li>
+        <li>
+          Environmentally Driven: By ensuring easy access to trash cans, 
+          we hope to reduce littering and encourage proper waste disposal.
+        </li>
+       </ul>
+
+      <h2> Get Involved </h2>
+      <p> 
+        Environmentally Driven: By ensuring easy access to trash cans, 
+        we hope to reduce littering and encourage proper waste disposal.
+      </p>
+      <ul>
+        <li>
+          Spread the Word: The more users we have, the more locations we can map.
+        </li>
+        <li>
+          Join a Cleanup: Take your commitment to the next level by joining or organizing a local cleanup event.
+        </li>
+        <li>
+          Provide Feedback: We're always looking to improve. Share your suggestions, experiences, and ideas with us.
+        </li>
+      </ul>
+
+      <h2> Together, Let's Bin it Right </h2>
+      <p> 
+        Thank you for being part of the Rubbish Radar journey. Let's make the world a cleaner place, one trash can at a time.
+      </p>
+
+      <h2>Who Are We?</h2>
+      <ul>
+        <li>
+          <a href="https://www.linkedin.com/in/andrew-bremond-469731223/" target="blank"> Andrew Bremond:</a>
+          
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/in/torisutan/" target="_blank">Tristan Cai</a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/in/arjun-bhalla-3bb2aa210/" target="_blank">Arjun Bhalla</a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/in/julian-gonzalez-b49665203/" target="_blank">Julian Gonzalez</a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/in/kush-momaya/" target="_blank"> Kush Momaya</a>
+        </li>
+      </ul>
+      
     </body>
   </div>
 </template>
