@@ -118,13 +118,13 @@
           <td> <img src="../images/tristan.jpg" alt="tristan_pic" > </td>
         </tr>
         <tr> <!--names-->
-          <td><a href="https://www.linkedin.com/in/andrew-bremond-469731223/" target="blank"> Andrew Bremond: </a></td>
-          <td><a href="https://www.linkedin.com/in/arjun-bhalla-3bb2aa210/" target="_blank"> Arjun Bhalla: </a></td>
-          <td><a href="https://www.linkedin.com/in/julian-gonzalez-b49665203/" target="_blank"> Julian Gonzalez: </a></td>
-          <td><a href="https://www.linkedin.com/in/kush-momaya/" target="_blank"> Kush Momaya: </a></td>
-          <td><a href="https://www.linkedin.com/in/torisutan/" target="_blank"> Tristan Cai: </a></td>
+          <td><a href="https://www.linkedin.com/in/andrew-bremond-469731223/" target="blank"> Andrew Bremond </a></td>
+          <td><a href="https://www.linkedin.com/in/arjun-bhalla-3bb2aa210/" target="_blank"> Arjun Bhalla </a></td>
+          <td><a href="https://www.linkedin.com/in/julian-gonzalez-b49665203/" target="_blank"> Julian Gonzalez </a></td>
+          <td><a href="https://www.linkedin.com/in/kush-momaya/" target="_blank"> Kush Momaya </a></td>
+          <td><a href="https://www.linkedin.com/in/torisutan/" target="_blank"> Tristan Cai </a></td>
         </tr>
-        <tr> <!--description-->
+        <tr class="description"> <!--description-->
             <td>
               As someone who loves to travel, I would like to have an app that allows me to locate public services such as trash 
               can to avoid carrying trash around with me all day. As a CS major at University of California, Riverside, I wanted 
@@ -145,7 +145,7 @@
               I'm a Data Science major at UCR, so this project was a step outside of my comfort zone because 
               I was working with frontend development. I worked with the setup of the firebase database and 
               creating a way for users to input their own trash can locations onto the map. This project really 
-              resonated with me because I am a frequent traveler and I enjoy going to national parks, and finding 
+              resonated with me because I am a frequent traveler and I enjoy going to national parks. Finding 
               trash cans can be a struggle when going to new places.
             </td>
             <td>
@@ -160,4 +160,23 @@
 </template>
 
 <style scoped>
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+tr {
+  margin-bottom: 20px;
+}
+
+.description td {
+  vertical-align: text-top;
+  padding: 5px;
+}
+
 </style>
