@@ -1,4 +1,5 @@
 <script setup>
+  import { ref } from "vue";
   import { RouterLink, RouterView } from 'vue-router'
 </script>
 
@@ -7,15 +8,15 @@
       <nav>
         <RouterLink to = "/"> Home </RouterLink>
         <RouterLink to = "/about"> About </RouterLink>
-        <RouterLink to = "/contacts"> Contacts </RouterLink>
       </nav>
   </header>
+
+  <RouterView/>
 </template>
 
 <style scoped>
 header {
   line-height: 1.5;
-
 }
 
 .logo {
@@ -26,8 +27,8 @@ header {
 nav {
   display: flex;
   position: absolute;
-  font-size: 12px;
-  text-align: center;
+  font-size: 1rem;
+  text-align: right;
 }
 
 nav a.router-link-exact-active {
@@ -66,8 +67,7 @@ nav a:first-of-type {
   }
 
   nav {
-    text-align: left;
-    margin-left: -1rem;
+    text-align: center;
     font-size: 1rem;
 
     padding: 1rem 0;
