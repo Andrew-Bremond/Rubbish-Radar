@@ -4,8 +4,8 @@
 
 <template>
   <div class="about">
-    <h1> local </h1>
-    <p> hi this is a test </p>
+    <h1> Lorem Ipsum Lorem </h1>
+    <p> Testing margins to see if this displays correctly </p>
   </div>
 </template>
 

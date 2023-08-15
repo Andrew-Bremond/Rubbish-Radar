@@ -4,11 +4,10 @@
 
 <template>
   <header>
-    <h1>Home</h1>
-    <p> hi this is a test </p>
+    <h1> Home </h1>
+    <p> Theoretically, elements should be consistent routing to different pages. </p>
   </header>
 </template>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 </style>

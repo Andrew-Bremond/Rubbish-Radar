@@ -20,6 +20,8 @@ nav {
   display: flex;
   position: absolute;
   font-size: 1rem;
+  right: 10px;
+  top: 10px;
 }
 
 nav a.router-link-exact-active {
@@ -32,7 +34,7 @@ nav a.router-link-exact-active:hover {
 
 nav a {
   display: inline-block;
-  padding: 0 1rem;
+  padding: 0 2rem;
   border-left: 1px solid var(--color-border);
 }
 
@@ -42,11 +44,7 @@ nav a:first-of-type {
 
 @media (min-width: 1024px) {
   nav {
-    text-align: center;
     font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
   }
 }
 </style>
