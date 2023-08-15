@@ -4,16 +4,10 @@
 
 <template>
   <div class="about">
-    <h1> test </h1>
+    <h1> local </h1>
+    <p> hi this is a test </p>
   </div>
 </template>
 
 <style scoped>
-@media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
-}
 </style>
