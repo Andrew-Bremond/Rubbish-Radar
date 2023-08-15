@@ -4,16 +4,10 @@
 
 <template>
   <div class="about">
-    <h1> test </h1>
+    <h1> Lorem Ipsum Lorem </h1>
+    <p> Testing margins to see if this displays correctly </p>
   </div>
 </template>
 
 <style scoped>
-@media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
-}
 </style>

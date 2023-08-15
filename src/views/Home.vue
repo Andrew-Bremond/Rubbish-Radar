@@ -4,13 +4,10 @@
 
 <template>
   <header>
-    <h1>Home</h1>
+    <h1> Home </h1>
+    <p> Theoretically, elements should be consistent routing to different pages. </p>
   </header>
 </template>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-header {
-  line-height: 1.5;
-}
 </style>
