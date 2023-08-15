@@ -3,15 +3,6 @@
   import { RouterLink, RouterView } from 'vue-router'
 </script>
 
-<script>
-import AddGoogleMap from './components/AddGoogleMap.vue';
-  export default {
-    name: 'App',
-    components: {
-      AddGoogleMap
-    }
-  }
-</script>
 
 <template>
   <div id="app">
