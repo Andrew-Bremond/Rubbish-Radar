@@ -117,7 +117,7 @@
           <td> <img src="../images/kush.jpg" alt="kush_pic" > </td>
           <td> <img src="../images/tristan.jpg" alt="tristan_pic" > </td>
         </tr>
-        <tr> <!--names-->
+        <tr> <!--names--> 
           <td><a href="https://www.linkedin.com/in/andrew-bremond-469731223/" target="blank"> Andrew Bremond </a></td>
           <td><a href="https://www.linkedin.com/in/arjun-bhalla-3bb2aa210/" target="_blank"> Arjun Bhalla </a></td>
           <td><a href="https://www.linkedin.com/in/julian-gonzalez-b49665203/" target="_blank"> Julian Gonzalez </a></td>
@@ -161,6 +161,8 @@
 
 <style scoped>
 table {
+  margin-left: auto;
+  margin-right: auto;
   width: 100%;
   border-collapse: collapse;
 }
@@ -170,13 +172,16 @@ td {
   vertical-align: middle;
 }
 
-tr {
-  margin-bottom: 20px;
+li {
+  line-height: 2rem;
 }
 
 .description td {
+  text-align: justify;
   vertical-align: text-top;
-  padding: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 5px;
 }
 
 </style>
