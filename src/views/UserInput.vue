@@ -25,8 +25,14 @@
 <script>
     import { ref } from 'vue';
 
-    const additionalInfo = ref('');
-
+    data(){
+        return {
+            additionalInfor: '',
+        }
+    },
+    methods: {
+        
+    }
     const addTrashCan = () => {
         
     }
