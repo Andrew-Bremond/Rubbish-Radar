@@ -10,7 +10,7 @@
 <template>
   <header>
     <img src="../images/rubbish-radar-high-resolution-color-logo.png" alt="Rubbish_Radar_Logo_pic" 
-    style="width: 1450px; height: 700px; border-radius: 0%; margin-top: -1000px;">
+    style="width: 1400px; height: 700px; border-radius: 0%; margin-top: -1000px;">
     <div>
       <h1> Home </h1>
       <p> Theoretically, elements should be consistent routing to different pages. </p>
