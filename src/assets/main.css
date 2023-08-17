@@ -19,12 +19,6 @@
   height: 100vh;
 }
 
-header {
-  padding: 60px 5%;
-  text-align: center;
-  min-height: 60vh;   
-}
-
 img {
   margin-top: 10px;
   margin-bottom: 10px;
@@ -153,12 +147,6 @@ ul li:before {
   background-color: #27a577;
 }
 
-header {
-  text-align: center;
-  padding: 100px 10%;
-  min-height: 100vh;
-}
-
 h1 {
   font-size: 2.5em;
 }
@@ -169,5 +157,17 @@ p {
 }
 
 header {
-  padding: 60px 5%;
+  text-align: center;
+  padding: 100px 10%;
+  min-height: 40vh;
 }
+
+/* header {
+  padding: 60px 5%;
+  text-align: center;
+  min-height: 60vh;  
+} */
+
+/* header {
+  padding: 60px 5%;
+} */
