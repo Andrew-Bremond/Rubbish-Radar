@@ -111,11 +111,11 @@
 
       <table>
         <tr> <!--pics-->
-          <td> <img src="../images/andrew.jpg" alt="andrew_pic" > </td>
-          <td> <img src="../images/arjun.jpg" alt="arjun_pic" > </td>
-          <td> <img src="../images/julian.jpg" alt="julian_pic" > </td>
-          <td> <img src="../images/kush.jpg" alt="kush_pic" > </td>
-          <td> <img src="../images/tristan.jpg" alt="tristan_pic" > </td>
+          <td> <img id = "pfp" src="../images/andrew.jpg" alt="andrew_pic" > </td>
+          <td> <img id = "pfp" src="../images/arjun.jpg" alt="arjun_pic" > </td>
+          <td> <img id = "pfp" src="../images/julian.jpg" alt="julian_pic" > </td>
+          <td> <img id = "pfp" src="../images/kush.jpg" alt="kush_pic" > </td>
+          <td> <img id = "pfp" src="../images/tristan.jpg" alt="tristan_pic" > </td>
         </tr>
         <tr> <!--names--> 
           <td><a href="https://www.linkedin.com/in/andrew-bremond-469731223/" target="blank"> Andrew Bremond </a></td>
