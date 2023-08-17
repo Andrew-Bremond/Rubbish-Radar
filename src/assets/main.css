@@ -55,6 +55,7 @@ h1{
   color: #31c48d;
   padding-bottom: 15px;
   margin-bottom: 20px;
+  font-size: 2.5em;
 }
 
 h2 {
@@ -69,6 +70,8 @@ p {
   line-height: 3rem;
   margin-bottom: 20px;
   text-align: justify;
+  font-size: 1.1em;
+  margin-top: 30px;
 }
 
 a {
@@ -145,15 +148,6 @@ ul li:before {
 
 .button:hover {
   background-color: #27a577;
-}
-
-h1 {
-  font-size: 2.5em;
-}
-
-p {
-  font-size: 1.1em;
-  margin-top: 30px;
 }
 
 header {
