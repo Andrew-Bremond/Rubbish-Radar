@@ -57,6 +57,7 @@ h1{
   margin-bottom: 20px;
   font-size: 2.5em;
   margin-top: 25rem;
+  text-align: left;
 }
 
 h2 {
@@ -65,6 +66,7 @@ h2 {
   padding-bottom: 10px;
   border-bottom: 2px solid #31c48d;
   margin-bottom: 20px;
+  text-align: left;
 }
 
 p {
@@ -120,6 +122,7 @@ a:hover {
 ul {
   margin-bottom: 20px;
   list-style-type: none;
+  text-align: left;
 }
 
 ul li {
@@ -135,20 +138,29 @@ ul li:before {
   top: 0;
 }
 
-.button {
+button {
   background-color: #31c48d;
-  color: #ffffff;
+  color: black;
   padding: 10px 20px;
   border: none;
-  border-radius: 4px;
+  border-radius: 10px;
   cursor: pointer;
   text-decoration: none;
   display: inline-block;
   transition: background-color 0.3s ease;
+  min-width: 180px;
+  min-height: 30px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 110%;
 }
 
-.button:hover {
-  background-color: #27a577;
+button:hover {
+  background-color: #3fdfa4;
+  transition: 0.5s;
+}
+
+button:active {
+  background-color: white;
 }
 
 header {
