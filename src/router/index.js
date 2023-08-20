@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import UserInput from '../views/UserInput.vue'
+import MapTest from '../views/MapTest.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -20,6 +21,11 @@ const router = createRouter({
       name: 'UserInput',
       component: UserInput,
     },
+    {
+      path: '/maptest',
+      name: 'maptest',
+      component: MapTest
+    }
   ]
 })
 
