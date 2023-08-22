@@ -1,6 +1,6 @@
 <template>
   <img src="../images/rubbish-radar-high-resolution-color-logo.png" alt="Rubbish_Radar_Logo_pic" 
-    style = "width: 100%; margin-top: -960px; object-fit: none; height: 400px; position: absolute;">
+    style = "width: 100%; top: 30px; object-fit: none; height: 400px; position: absolute;">
 
     <div id="container">
       <div id="map"></div>
@@ -25,7 +25,7 @@
       initMap() {
         let mapOptions = {
           center: { lat: 41, lng: -87 },
-          zoom: 12
+          zoom: 8
         }
         let map = new google.maps.Map(document.getElementById('map'), mapOptions); 
       }
@@ -47,12 +47,12 @@
 
 <style scoped>
   #map {
-    height: 60vh;
-    width: 40vw;
-    margin-left: 0;
-    margin-right: 0;
+    height: 80vh;
+    width: 80vw;
   }
   #container {
-    margin-top: -10rem;
+    top: 0;
+    left: 0;
+    right: 0;
   }
 </style>
