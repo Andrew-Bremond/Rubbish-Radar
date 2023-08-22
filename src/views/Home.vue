@@ -1,6 +1,6 @@
 <template>
-<img src="../images/rubbish-radar-high-resolution-color-logo.png" alt="Rubbish_Radar_Logo_pic" 
-    style = "width: 100%; margin-top: -950px; object-fit: none; height: 400px; position: absolute;">
+  <img src="../images/rubbish-radar-high-resolution-color-logo.png" alt="Rubbish_Radar_Logo_pic" 
+    style = "width: 100%; margin-top: -960px; object-fit: none; height: 400px; position: absolute;">
 
     <div id="container">
       <div id="map"></div>
@@ -8,7 +8,6 @@
 
     <div>
       <body>
-          <h1 style="text-align: center;"> Home </h1>
           <p> Know a trashcan you didn't see on this map? Help us by adding it. </p>
           <button @click="goToUserInputPage">Add Trashcan</button>
           <!-- <RouterLink></RouterLink> -->
@@ -22,6 +21,7 @@
       goToUserInputPage() {
         this.$router.push("/UserInput");
       },
+
       initMap() {
         let mapOptions = {
           center: { lat: 41, lng: -87 },
@@ -49,9 +49,10 @@
   #map {
     height: 60vh;
     width: 40vw;
-    background-color: blue;
+    margin-left: 0;
+    margin-right: 0;
   }
   #container {
-    margin-top: 50rem;
+    margin-top: -10rem;
   }
 </style>
