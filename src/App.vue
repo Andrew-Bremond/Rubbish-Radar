@@ -1,7 +1,6 @@
 <script setup>
   import { ref } from "vue";
   import { RouterLink, RouterView } from 'vue-router'
-  import  UserInput  from "../src/views/UserInput.vue"
 </script>
 
 <template>
@@ -10,7 +9,6 @@
         <RouterLink to = "/"> Home </RouterLink>
         <RouterLink to = "/about"> About </RouterLink>
       </nav>
-      <UserInput></UserInput>
   </header>
   <RouterView/>
   
