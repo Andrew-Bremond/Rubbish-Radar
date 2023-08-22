@@ -47,24 +47,44 @@ import {
         methods: {
             async addTrashCan() {
                 if("geolocation" in navigator){
-                    navigator.geolocation.getCurrentPosition(
-                        position => {
-                            this.location = {
-                                latitude: position.coords.latitude,
-                                longitude: position.coords.longitude,
-                                info: this.additionalInfo,
-                            };
-                        },
-                        error => {
-                            console.error("Error getting location: ", error.message)
-                        }
-                    );
-                    const docReference = await addDoc(
-                        collection(db, 'locations'),
-                        {
-                            location: this.location,
-                        }
-                    );
+                    try{
+                        const position = await new Promise((resolve, reject) => {
+                            navigator.geolocation.getCurrentPosition(resolve, reject);
+                        });
+
+                        this.location = {
+                            latitude: position.coords.latitude,
+                            longitude: position.coords.longitude,
+                            info: this.additionalInfo,
+                        };
+
+                        const docReference = await addDoc(
+                            collection(db, 'locations'),
+                            {
+                                location: this.location,
+                            }
+                        );
+                    } catch (error) {
+                        console.error("Error getting location: ", error);
+                    }
+                    // navigator.geolocation.getCurrentPosition(
+                    //     position => {
+                    //         this.location = {
+                    //             latitude: position.coords.latitude,
+                    //             longitude: position.coords.longitude,
+                    //             info: this.additionalInfo,
+                    //         };
+                    //     },
+                    //     error => {
+                    //         console.error("Error getting location: ", error.message)
+                    //     }
+                    // );
+                    // const docReference = await addDoc(
+                    //     collection(db, 'locations'),
+                    //     {
+                    //         location: this.location,
+                    //     }
+                    // );
                 } else {
                     console.error("Location services not available in this browser")
                 }
