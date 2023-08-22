@@ -1,5 +1,6 @@
 <script setup>
   import { RouterLink, RouterView } from 'vue-router'
+ 
 </script>
 
 <template>
@@ -22,7 +23,19 @@
 
 
 <script>
-    import { ref } from 'vue';
+import { ref } from 'vue';
+import { db } from "../firebaseResources"
+import {
+    collection,
+    doc,
+    addDoc,
+    setDoc,
+    getDoc,
+    getDocs,
+    query,
+    where,
+    deleteDoc,
+} from 'firebase/firestore'
 
     export default {
         data(){
@@ -32,17 +45,24 @@
             };
         },
         methods: {
-            addTrashCan(){
+            async addTrashCan() {
                 if("geolocation" in navigator){
                     navigator.geolocation.getCurrentPosition(
                         position => {
                             this.location = {
                                 latitude: position.coords.latitude,
                                 longitude: position.coords.longitude,
+                                info: this.additionalInfo,
                             };
                         },
                         error => {
                             console.error("Error getting location: ", error.message)
+                        }
+                    );
+                    const docReference = await addDoc(
+                        collection(db, 'locations'),
+                        {
+                            location: this.location,
                         }
                     );
                 } else {
