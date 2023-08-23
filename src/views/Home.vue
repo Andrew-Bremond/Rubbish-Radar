@@ -84,6 +84,7 @@
     width: 80vw;
   }
   #container {
+    color: black;
     top: 0;
     left: 0;
     right: 0;
