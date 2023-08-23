@@ -1,6 +1,6 @@
 <template>
   <img src="../images/rubbish-radar-high-resolution-color-logo.png" alt="Rubbish_Radar_Logo_pic" 
-    style = "width: 100%; top: 30px; object-fit: none; height: 400px; position: absolute;">
+    style = "width: 100%; top: 35px; object-fit: none; height: 400px; position: absolute;">
 
     <div id="map"></div>
       <body>

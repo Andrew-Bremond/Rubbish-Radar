@@ -8,7 +8,8 @@
       <nav>
         <RouterLink to = "/"> Home </RouterLink>
         <RouterLink to = "/about"> About </RouterLink>
-      </nav>
+        <RouterLink to = "/UserAuth"> Login / SignUp </RouterLink>
+      </nav>  
   </header>
   <RouterView/>
   
