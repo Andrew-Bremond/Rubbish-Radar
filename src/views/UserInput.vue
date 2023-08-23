@@ -9,8 +9,12 @@
         <br>
         <input v-model="additionalInfo" placeholder="Info About Trash Can Location">
         <br>
-        <button @click="addTrashCan">Add Current Location</button>
-        <p v-if="location">Trash can added at location: {{location.latitude}}, {{location.longitude}}</p>
+        <button @click="addTrashCan">Add Trash Can</button>
+        <!-- <p v-if="location">Trash can added at location: {{location.latitude}}, {{location.longitude}}</p> -->
+        <button @click="addRecyclingBin">Add Recycling Bin</button>
+        <!-- <p v-if="location">Recycling Bin added at location: {{location.latitude}}, {{location.longitude}}</p> -->
+        <button @click="addCombustible">Add Combustable Bin</button>
+        <!-- <p v-if="location">Combustable Bin added at location: {{location.latitude}}, {{location.longitude}}</p> -->
     </div>
 </template>
 
@@ -59,7 +63,7 @@ import {
                         };
 
                         const docReference = await addDoc(
-                            collection(db, 'locations'),
+                            collection(db, 'trashcans'),
                             {
                                 location: this.location,
                             }
@@ -67,24 +71,58 @@ import {
                     } catch (error) {
                         console.error("Error getting location: ", error);
                     }
-                    // navigator.geolocation.getCurrentPosition(
-                    //     position => {
-                    //         this.location = {
-                    //             latitude: position.coords.latitude,
-                    //             longitude: position.coords.longitude,
-                    //             info: this.additionalInfo,
-                    //         };
-                    //     },
-                    //     error => {
-                    //         console.error("Error getting location: ", error.message)
-                    //     }
-                    // );
-                    // const docReference = await addDoc(
-                    //     collection(db, 'locations'),
-                    //     {
-                    //         location: this.location,
-                    //     }
-                    // );
+                } else {
+                    console.error("Location services not available in this browser")
+                }
+            },
+            async addRecyclingBin() {
+                if("geolocation" in navigator){
+                    try{
+                        const position = await new Promise((resolve, reject) => {
+                            navigator.geolocation.getCurrentPosition(resolve, reject);
+                        });
+
+                        this.location = {
+                            latitude: position.coords.latitude,
+                            longitude: position.coords.longitude,
+                            info: this.additionalInfo,
+                        };
+
+                        const docReference = await addDoc(
+                            collection(db, 'recyclingbins'),
+                            {
+                                location: this.location,
+                            }
+                        );
+                    } catch (error) {
+                        console.error("Error getting location: ", error);
+                    }
+                } else {
+                    console.error("Location services not available in this browser")
+                }
+            },
+            async addCombustible() {
+                if("geolocation" in navigator){
+                    try{
+                        const position = await new Promise((resolve, reject) => {
+                            navigator.geolocation.getCurrentPosition(resolve, reject);
+                        });
+
+                        this.location = {
+                            latitude: position.coords.latitude,
+                            longitude: position.coords.longitude,
+                            info: this.additionalInfo,
+                        };
+
+                        const docReference = await addDoc(
+                            collection(db, 'combustiblebins'),
+                            {
+                                location: this.location,
+                            }
+                        );
+                    } catch (error) {
+                        console.error("Error getting location: ", error);
+                    }
                 } else {
                     console.error("Location services not available in this browser")
                 }
