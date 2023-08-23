@@ -12,6 +12,17 @@
 
 <script>
   export default {
+    name: 'MapTest',
+    mounted() {
+      if (!window.google) {
+        const script = document.createElement('script');
+        script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBkkgbhppn40r-DjzpnkAg0q7waZKQzsr8&callback';
+        document.body.appendChild(script);
+        script.onload = this.initMap;
+      } else {
+        this.initMap();
+      }
+    },
     methods: {
       goToUserInputPage() {
         this.$router.push("/UserInput");
@@ -324,21 +335,7 @@
       );
       infoWindow.open(map);
     }
-    window.initMap = initMap;
-
   }},
-
-    name: 'MapTest',
-    mounted() {
-      if (!window.google) {
-        const script = document.createElement('script');
-        script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBkkgbhppn40r-DjzpnkAg0q7waZKQzsr8&callback=initMap';
-        document.body.appendChild(script);
-        script.onload = this.initMap;
-      } else {
-        this.initMap();
-      }
-    },
   }
 </script>
 
