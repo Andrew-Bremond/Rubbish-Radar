@@ -7,14 +7,14 @@
     <div class="userInput">
         <h1>Add Trash Can</h1>
         <br>
-        <input v-model="additionalInfo" placeholder="Info About Trash Can Location">
+        <input v-model="additionalInfo" placeholder="Info About Location">
         <br>
         <button @click="addTrashCan">Add Trash Can</button>
         <!-- <p v-if="location">Trash can added at location: {{location.latitude}}, {{location.longitude}}</p> -->
         <button @click="addRecyclingBin">Add Recycling Bin</button>
         <!-- <p v-if="location">Recycling Bin added at location: {{location.latitude}}, {{location.longitude}}</p> -->
         <button @click="addCombustible">Add Combustable Bin</button>
-        <!-- <p v-if="location">Combustable Bin added at location: {{location.latitude}}, {{location.longitude}}</p> -->
+        <p v-if="location">Added at location: {{location.latitude}}, {{location.longitude}}</p>
     </div>
 </template>
 
