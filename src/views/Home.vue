@@ -125,8 +125,4 @@ import Map from "../components/Map.vue"
     color: black;
     margin-top: 30%;
   }
-  .userInput{
-    margin-bottom: 20%;
-    margin-top: 10%;
-  }
 </style>
