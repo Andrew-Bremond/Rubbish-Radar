@@ -1,5 +1,10 @@
 @import './base.css';
 
+.userInput {
+  margin-bottom: 20%;
+  margin-top: 10%;
+}
+
 #app {
   width: 100%;
   margin: 0 auto;
