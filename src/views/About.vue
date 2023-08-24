@@ -36,7 +36,7 @@
       </p>
 
       <h2> Why Choose Rubbish Radar </h2>
-       <ul>
+      <ul>
         <li>
           To create a global community-driven platform where every disposed of item finds its way to 
           a garbage disposal promoting easy accessibility to our users.
@@ -49,7 +49,7 @@
           Environmentally Driven: By ensuring easy access to trash cans, 
           we hope to reduce littering and encourage proper waste disposal.
         </li>
-       </ul>
+      </ul>
 
       <h2> Get Involved </h2>
       <p> 
@@ -114,56 +114,128 @@
       </ul> -->
 
       <table>
-        <tr> <!--pics-->
-          <td> <a href="https://www.linkedin.com/in/andrew-bremond-469731223/" target="blank"> 
-            <img id = "pfp" src="../images/andrew.jpg" alt="andrew_pic" > </a> </td>
-          <td> <a href="https://www.linkedin.com/in/arjun-bhalla-3bb2aa210/" target="_blank">
-            <img id = "pfp" src="../images/arjun.jpg" alt="arjun_pic" > </a> </td>
-          <td> <a href="https://www.linkedin.com/in/julian-gonzalez-b49665203/" target="_blank">
-            <img id = "pfp" src="../images/julian.jpg" alt="julian_pic" > </a> </td>
-          <td> <a href="https://www.linkedin.com/in/kush-momaya/" target="_blank"> 
-            <img id = "pfp" src="../images/kush.jpg" alt="kush_pic" > </a> </td>
-          <td> <a href="https://www.linkedin.com/in/torisutan/" target="_blank">
-            <img id = "pfp" src="../images/tristan.jpg" alt="tristan_pic" > </a> </td>
+        <tr>
+          <!--pics-->
+          <td>
+            <a
+              href="https://www.linkedin.com/in/andrew-bremond-469731223/"
+              target="blank"
+            > 
+              <img
+                id="pfp"
+                src="../images/andrew.jpg"
+                alt="andrew_pic"
+              > </a>
+          </td>
+          <td>
+            <a
+              href="https://www.linkedin.com/in/arjun-bhalla-3bb2aa210/"
+              target="_blank"
+            >
+              <img
+                id="pfp"
+                src="../images/arjun.jpg"
+                alt="arjun_pic"
+              > </a>
+          </td>
+          <td>
+            <a
+              href="https://www.linkedin.com/in/julian-gonzalez-b49665203/"
+              target="_blank"
+            >
+              <img
+                id="pfp"
+                src="../images/julian.jpg"
+                alt="julian_pic"
+              > </a>
+          </td>
+          <td>
+            <a
+              href="https://www.linkedin.com/in/kush-momaya/"
+              target="_blank"
+            > 
+              <img
+                id="pfp"
+                src="../images/kush.jpg"
+                alt="kush_pic"
+              > </a>
+          </td>
+          <td>
+            <a
+              href="https://www.linkedin.com/in/torisutan/"
+              target="_blank"
+            >
+              <img
+                id="pfp"
+                src="../images/tristan.jpg"
+                alt="tristan_pic"
+              > </a>
+          </td>
         </tr>
-        <tr> <!--names--> 
-          <td><a href="https://www.linkedin.com/in/andrew-bremond-469731223/" target="blank"> Andrew Bremond </a></td>
-          <td><a href="https://www.linkedin.com/in/arjun-bhalla-3bb2aa210/" target="_blank"> Arjun Bhalla </a></td>
-          <td><a href="https://www.linkedin.com/in/julian-gonzalez-b49665203/" target="_blank"> Julian Gonzalez </a></td>
-          <td><a href="https://www.linkedin.com/in/kush-momaya/" target="_blank"> Kush Momaya </a></td>
-          <td><a href="https://www.linkedin.com/in/torisutan/" target="_blank"> Tristan Cai </a></td>
+        <tr>
+          <!--names--> 
+          <td>
+            <a
+              href="https://www.linkedin.com/in/andrew-bremond-469731223/"
+              target="blank"
+            > Andrew Bremond </a>
+          </td>
+          <td>
+            <a
+              href="https://www.linkedin.com/in/arjun-bhalla-3bb2aa210/"
+              target="_blank"
+            > Arjun Bhalla </a>
+          </td>
+          <td>
+            <a
+              href="https://www.linkedin.com/in/julian-gonzalez-b49665203/"
+              target="_blank"
+            > Julian Gonzalez </a>
+          </td>
+          <td>
+            <a
+              href="https://www.linkedin.com/in/kush-momaya/"
+              target="_blank"
+            > Kush Momaya </a>
+          </td>
+          <td>
+            <a
+              href="https://www.linkedin.com/in/torisutan/"
+              target="_blank"
+            > Tristan Cai </a>
+          </td>
         </tr>
-        <tr class="description"> <!--description-->
-            <td>
-              As someone who loves to travel, I would like to have an app that allows me to locate public services such as trash 
-              can to avoid carrying trash around with me all day. As a CS major at University of California, Riverside, I wanted 
-              to challenge myself to find a solution that helps us find trash cans and hopefully makes the streets look cleaner.
-            </td>
-            <td>
-              I am a Computer Science major at the University of California, San Diego. On this web application, 
-              I have worked on bringing the map implementation by working with the Google Maps API. As a frequent traveler, 
-              I strongly believe and see the value in Rubbish Radar as I have found myself looking for garbage disposal 
-              in so many places and always looking and scanning for a trash can.
-            </td>
-            <td>
-              I'm a third year computer engineering student at University of California, Riverside. I believe public amenities 
-              such as trash disposables are an integral part of our lives and should be easily accessible. I hope this project 
-              challenges my mind to new horizons. 
-            </td>
-            <td>
-              I'm a Data Science major at UCR, so this project was a step outside of my comfort zone because 
-              I was working with frontend development. I worked with the setup of the firebase database and 
-              creating a way for users to input their own trash can locations onto the map. This project really 
-              resonated with me because I am a frequent traveler and I enjoy going to national parks. Finding 
-              trash cans can be a struggle when going to new places.
-            </td>
-            <td>
-              I'm familiar with the NextJS framework and I enjoy hiking. I don't like to park in places where people leave their carts out. 
-              Nor do I like seeing trash on trails when I go out hiking. 
-            </td>
+        <tr class="description">
+          <!--description-->
+          <td>
+            As someone who loves to travel, I would like to have an app that allows me to locate public services such as trash 
+            can to avoid carrying trash around with me all day. As a CS major at University of California, Riverside, I wanted 
+            to challenge myself to find a solution that helps us find trash cans and hopefully makes the streets look cleaner.
+          </td>
+          <td>
+            I am a Computer Science major at the University of California, San Diego. On this web application, 
+            I have worked on bringing the map implementation by working with the Google Maps API. As a frequent traveler, 
+            I strongly believe and see the value in Rubbish Radar as I have found myself looking for garbage disposal 
+            in so many places and always looking and scanning for a trash can.
+          </td>
+          <td>
+            I'm a third year computer engineering student at University of California, Riverside. I believe public amenities 
+            such as trash disposables are an integral part of our lives and should be easily accessible. I hope this project 
+            challenges my mind to new horizons. 
+          </td>
+          <td>
+            I'm a Data Science major at UCR, so this project was a step outside of my comfort zone because 
+            I was working with frontend development. I worked with the setup of the firebase database and 
+            creating a way for users to input their own trash can locations onto the map. This project really 
+            resonated with me because I am a frequent traveler and I enjoy going to national parks. Finding 
+            trash cans can be a struggle when going to new places.
+          </td>
+          <td>
+            I'm familiar with the NextJS framework and I enjoy hiking. I don't like to park in places where people leave their carts out. 
+            Nor do I like seeing trash on trails when I go out hiking. 
+          </td>
         </tr>
       </table>
-      
     </body>
   </div>
 </template>

@@ -1,20 +1,38 @@
 <template>
-    <div class="userLogin">
-        <template v-if="!userLoggedIn">
-            <h2 style="text-align: center;">Login / Sign Up</h2>
+  <div class="userLogin">
+    <template v-if="!userLoggedIn">
+      <h2 style="text-align: center;">
+        Login / Sign Up
+      </h2>
       <!-- TODO: We should hide this if a user is already logged in and show logout instead -->
-      Email: <input type="text" style="text-align: left; margin-left: 10%;" v-model.trim="email" placeholder="example@email.com"/>
+      Email: <input
+        v-model.trim="email"
+        type="text"
+        style="text-align: left; margin-left: 10%;"
+        placeholder="example@email.com"
+      >
       <br>
-      Password: <input type="password" v-model.trim="password" placeholder="password"/>
-      <tempalte v-if="password != null && password.length != 0 && password.length < 6" style="color:red">
+      Password: <input
+        v-model.trim="password"
+        type="password"
+        placeholder="password"
+      >
+      <template
+        v-if="password != null && password.length != 0 && password.length < 6"
+        style="color:red"
+      >
         <br>Your password must be at least 6 characters
-      </tempalte>
+      </template>
       <br>
       <br>
       <br>
-      <button @click="createUser()">Create User</button>
+      <button @click="createUser()">
+        Create User
+      </button>
       <br>
-      <button @click="login()">Login</button>
+      <button @click="login()">
+        Login
+      </button>
       <!-- TODO: Update the styling here to color:red -->
       <template v-if="userNotFound">
         <br>
@@ -26,16 +44,18 @@
       </template>
     </template>
     <template v-else>
-      <button @click="signOut()">Sign Out</button>
+      <button @click="signOut()">
+        Sign Out
+      </button>
     </template>
-    </div>
+  </div>
 </template>
 
 
 
 <script>
-import { auth } from '../firebaseResources';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { auth } from "../firebaseResources";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 
 export default {
   // For this component to work you'll need to enable auth in your project and minimally enable
@@ -50,7 +70,7 @@ export default {
       invalidPassword: false,
 
       userLoggedIn: false,
-    }
+    };
   },
   mounted() {
     // Here we check the user and handle their state manually, which is less than ideal and not the
@@ -80,16 +100,16 @@ export default {
       } catch(err) {
         if (err.code) {
           // Process auth specific error messages and display them to the user
-          if (err.code === 'auth/wrong-password') {
-            console.error('Error in login, wrong password');
+          if (err.code === "auth/wrong-password") {
+            console.error("Error in login, wrong password");
             this.invalidPassword = true;
-          } else if (err.code === 'auth/user-not-found') {
-            console.error('Error in login, user not found');
+          } else if (err.code === "auth/user-not-found") {
+            console.error("Error in login, user not found");
             this.userNotFound = true;
           }
         } else {
           // All other errors are logged to the console
-          console.error('Error in login', err);
+          console.error("Error in login", err);
         }
       }
     },
@@ -103,9 +123,9 @@ export default {
 
         // Mark that we are now logged in
         this.userLoggedIn = true;
-        console.log('Current user', auth.currentUser);
+        console.log("Current user", auth.currentUser);
       } catch(err) {
-        console.error('Error in createUser', err);
+        console.error("Error in createUser", err);
       }
     },
     async signOut() {
@@ -116,14 +136,14 @@ export default {
           // Mark that we are now logged out
           this.userLoggedIn = false;
         } else {
-          console.warn('No user signed in');
+          console.warn("No user signed in");
         }
       } catch(err) {
-        console.error('Error in signOut', err);
+        console.error("Error in signOut", err);
       }
     }
   }
-}
+};
 </script>
 
 <style>
