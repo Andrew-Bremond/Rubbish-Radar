@@ -3,9 +3,9 @@
         <template v-if="!userLoggedIn">
             <h2 style="text-align: center;">Login / Sign Up</h2>
       <!-- TODO: We should hide this if a user is already logged in and show logout instead -->
-      Email: <input type="text" style="text-align: left; margin-left: 10%;" v-model.trim="email" />
+      Email: <input type="text" style="text-align: left; margin-left: 10%;" v-model.trim="email" placeholder="example@email.com"/>
       <br>
-      Password: <input type="password" v-model.trim="password" />
+      Password: <input type="password" v-model.trim="password" placeholder="password"/>
       <tempalte v-if="password != null && password.length != 0 && password.length < 6" style="color:red">
         <br>Your password must be at least 6 characters
       </tempalte>
@@ -125,3 +125,9 @@ export default {
   }
 }
 </script>
+
+<style>
+    .userLogin {
+        margin-top: 10%;
+    }
+</style>

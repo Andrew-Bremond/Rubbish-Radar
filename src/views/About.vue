@@ -29,6 +29,11 @@
       <p> 
         To create a global community-driven platform where every disposed of item
         finds its way to a garbage disposal promoting easy accessibility to our users.
+        Through strategic placement of our thoughtfully designed trash cans, we are actively
+        taking steps to reduce litter and promote responsible waste disposal. Every trash can 
+        we locate serves as a reminder of our dedication to safeguarding the environment for 
+        current and future generations. By encouraging proper waste management, we believe that 
+        even the smallest actions can create a significant and positive impact on the planet we all call home.
       </p>
 
       <h2> Why Choose Rubbish Radar </h2>
@@ -111,11 +116,16 @@
 
       <table>
         <tr> <!--pics-->
-          <td> <img id = "pfp" src="../images/andrew.jpg" alt="andrew_pic" > </td>
-          <td> <img id = "pfp" src="../images/arjun.jpg" alt="arjun_pic" > </td>
-          <td> <img id = "pfp" src="../images/julian.jpg" alt="julian_pic" > </td>
-          <td> <img id = "pfp" src="../images/kush.jpg" alt="kush_pic" > </td>
-          <td> <img id = "pfp" src="../images/tristan.jpg" alt="tristan_pic" > </td>
+          <td> <a href="https://www.linkedin.com/in/andrew-bremond-469731223/" target="blank"> 
+            <img id = "pfp" src="../images/andrew.jpg" alt="andrew_pic" > </a> </td>
+          <td> <a href="https://www.linkedin.com/in/arjun-bhalla-3bb2aa210/" target="_blank">
+            <img id = "pfp" src="../images/arjun.jpg" alt="arjun_pic" > </a> </td>
+          <td> <a href="https://www.linkedin.com/in/julian-gonzalez-b49665203/" target="_blank">
+            <img id = "pfp" src="../images/julian.jpg" alt="julian_pic" > </a> </td>
+          <td> <a href="https://www.linkedin.com/in/kush-momaya/" target="_blank"> 
+            <img id = "pfp" src="../images/kush.jpg" alt="kush_pic" > </a> </td>
+          <td> <a href="https://www.linkedin.com/in/torisutan/" target="_blank">
+            <img id = "pfp" src="../images/tristan.jpg" alt="tristan_pic" > </a> </td>
         </tr>
         <tr> <!--names--> 
           <td><a href="https://www.linkedin.com/in/andrew-bremond-469731223/" target="blank"> Andrew Bremond </a></td>
