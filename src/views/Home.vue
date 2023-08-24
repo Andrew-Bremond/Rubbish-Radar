@@ -40,6 +40,7 @@ import {
       return {
           additionalInfo: '',
           location: null,
+          locArray: [],
       };
     },
     mounted() {
@@ -447,6 +448,15 @@ import {
         console.error("Location services not available in this browser")
     }
   },
+  async getLocations(){
+    try {
+      const locCollection = collection(db, 'locations');
+      const locationDocs = await getDocs(locCollection);
+      this.locArray = locationDocs.docs.map(doc => doc.data().location);
+    } catch (error){
+      console.error("Error getting location: ", error);
+    }
+  }
   },
 }
 </script>
