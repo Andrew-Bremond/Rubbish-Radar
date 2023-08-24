@@ -42,24 +42,7 @@
 
       },
 
-      async getLocations(){
-        try {
-          const trashCollection = collection(db, 'trashcans');
-          const recyclingCollection = collection(db, 'recyclingbins');
-          const combustibleCollection = collection(db, 'combustiblebins');
-
-          let trashCansDoc = await getDocs(trashCollection);
-          this.trashCans = trashCansDoc.docs.map(doc => doc.data().location);
-
-          let recyclingDoc = await getDocs(recyclingCollection);
-          this.recyclingBins = recyclingDoc.docs.map(doc => doc.data().location);
-
-          let combustibleDoc = await getDocs(combustibleCollection);
-          this.combustibleBins = combustibleDoc.docs.map(doc => doc.data().location);
-        } catch (error){
-          console.error("Error getting location: ", error);
-        }
-      }
+      
     }
   }
   </script>
