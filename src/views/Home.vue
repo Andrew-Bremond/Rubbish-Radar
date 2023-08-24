@@ -2,7 +2,7 @@
   <img src="../images/rubbish-radar-high-resolution-color-logo.png" alt="Rubbish_Radar_Logo_pic" 
     style = "width: 100%; top: 35px; object-fit: none; height: 400px; position: absolute;">
 
-    <div id="map"> </div>
+    <Map></Map>
       <body>
         <div class="userInput">
           <h1 style="text-align: center;">Add Trash Can</h1>
@@ -20,22 +20,11 @@
 </template>
 
 <script>
-import { ref } from 'vue';
-import { db } from "../firebaseResources"
-import {
-    collection,
-    doc,
-    addDoc,
-    setDoc,
-    getDoc,
-    getDocs,
-    query,
-    where,
-    deleteDoc,
-} from 'firebase/firestore'
+
+import Map from "../components/Map.vue"
 
   export default {
-    name: 'MapTest',
+    components: { Map },
     data(){
       return {
           additionalInfo: '',
@@ -44,8 +33,7 @@ import {
       };
     },
     mounted() {
-      if (!window.google) 
-      {
+      if (!window.google) {
         const script = document.createElement('script');
         script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBkkgbhppn40r-DjzpnkAg0q7waZKQzsr8&callback=initMap&map_ids=4af310b3e8d84ead';
         document.body.appendChild(script);
@@ -63,7 +51,7 @@ import {
         let mapOptions = {
           center: { lat: 41, lng: -87 },
           zoom: 16,
-          mapId: "4af310b3e8d84ead"
+          mapId: "4af310b3e8d84ead",
         }
         let map = new google.maps.Map(document.getElementById('map'), mapOptions); 
 
@@ -196,9 +184,14 @@ import {
 </script>
 
 <style scoped>
-  div #map {
+  #map {
     height: 80vh;
     width: 80vw;
     color: black;
+    margin-top: 30%;
+  }
+  .userInput{
+    margin-bottom: 20%;
+    margin-top: 10%;
   }
 </style>
