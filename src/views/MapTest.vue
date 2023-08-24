@@ -5,8 +5,22 @@
   </template>
   
   <script>
+  import {ref} from "vue"
+  import {db} from "../firebaseResources"
+  import {
+    collection,
+    getDocs,
+  } from "firebase/firestore"
+
   export default {
     name: 'MapTest',
+    data() {
+      return {
+        trashCans: [],
+        recyclingBins: [],
+        combustibleBins: [],
+      }
+    },
     mounted() {
       if (!window.google) {
         const script = document.createElement('script');
@@ -16,6 +30,7 @@
       } else {
         this.initMap();
       }
+      this.getLocations();
     },
     methods: {
       initMap() {
@@ -24,7 +39,10 @@
           zoom: 12
         }
         let map = new google.maps.Map(document.getElementById('map'), mapOptions); 
-      }
+
+      },
+
+      
     }
   }
   </script>

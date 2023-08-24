@@ -169,12 +169,9 @@ header {
   min-height: 40vh;
 }
 
-/* header {
-  padding: 60px 5%;
-  text-align: center;
-  min-height: 60vh;  
-} */
-
-/* header {
-  padding: 60px 5%;
-} */
+input {
+  text-align:left;
+  width: 70%;
+  padding: 10px;
+  border-radius: 5px;
+}
