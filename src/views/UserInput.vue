@@ -1,34 +1,36 @@
 <script setup>
-  import { RouterLink, RouterView } from 'vue-router'
+  import { RouterLink, RouterView } from "vue-router";
  
 </script>
 
 <template>
-    <div class="userInput">
-        <h1>Add Trash Can</h1>
-        <br>
-        <input v-model="additionalInfo" placeholder="Info About Location">
-        <br>
-        <button @click="addTrashCan">Add Trash Can</button>
-        <!-- <p v-if="location">Trash can added at location: {{location.latitude}}, {{location.longitude}}</p> -->
-        <button @click="addRecyclingBin">Add Recycling Bin</button>
-        <!-- <p v-if="location">Recycling Bin added at location: {{location.latitude}}, {{location.longitude}}</p> -->
-        <button @click="addCombustible">Add Combustable Bin</button>
-        <p v-if="location">Added at location: {{location.latitude}}, {{location.longitude}}</p>
-    </div>
+  <div class="userInput">
+    <h1>Add Trash Can</h1>
+    <br>
+    <input
+      v-model="additionalInfo"
+      placeholder="Info About Location"
+    >
+    <br>
+    <button @click="addTrashCan">
+      Add Trash Can
+    </button>
+    <!-- <p v-if="location">Trash can added at location: {{location.latitude}}, {{location.longitude}}</p> -->
+    <button @click="addRecyclingBin">
+      Add Recycling Bin
+    </button>
+    <!-- <p v-if="location">Recycling Bin added at location: {{location.latitude}}, {{location.longitude}}</p> -->
+    <button @click="addCombustible">
+      Add Combustable Bin
+    </button>
+    <p v-if="location">
+      Added at location: {{ location.latitude }}, {{ location.longitude }}
+    </p>
+  </div>
 </template>
 
-<style>
-    body {
-        text-align: center;
-    }
-
-</style>
-
-
 <script>
-import { ref } from 'vue';
-import { db } from "../firebaseResources"
+import { db } from "../firebaseResources";
 import {
     collection,
     doc,
@@ -39,12 +41,12 @@ import {
     query,
     where,
     deleteDoc,
-} from 'firebase/firestore'
+} from "firebase/firestore";
 
     export default {
         data(){
             return {
-                additionalInfo: '',
+                additionalInfo: "",
                 location: null,
             };
         },
@@ -63,7 +65,7 @@ import {
                         };
 
                         const docReference = await addDoc(
-                            collection(db, 'trashcans'),
+                            collection(db, "trashcans"),
                             {
                                 location: this.location,
                             }
@@ -72,7 +74,7 @@ import {
                         console.error("Error getting location: ", error);
                     }
                 } else {
-                    console.error("Location services not available in this browser")
+                    console.error("Location services not available in this browser");
                 }
             },
             async addRecyclingBin() {
@@ -89,7 +91,7 @@ import {
                         };
 
                         const docReference = await addDoc(
-                            collection(db, 'recyclingbins'),
+                            collection(db, "recyclingbins"),
                             {
                                 location: this.location,
                             }
@@ -98,7 +100,7 @@ import {
                         console.error("Error getting location: ", error);
                     }
                 } else {
-                    console.error("Location services not available in this browser")
+                    console.error("Location services not available in this browser");
                 }
             },
             async addCombustible() {
@@ -115,7 +117,7 @@ import {
                         };
 
                         const docReference = await addDoc(
-                            collection(db, 'combustiblebins'),
+                            collection(db, "combustiblebins"),
                             {
                                 location: this.location,
                             }
@@ -124,12 +126,18 @@ import {
                         console.error("Error getting location: ", error);
                     }
                 } else {
-                    console.error("Location services not available in this browser")
+                    console.error("Location services not available in this browser");
                 }
             },
         },
     };
     
-
-
 </script>
+
+
+<style>
+    body {
+        text-align: center;
+    }
+
+</style>
