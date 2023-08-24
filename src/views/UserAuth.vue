@@ -1,66 +1,58 @@
 <template>
   <div class="userLogin">
     <template v-if="!userLoggedIn">
-      <h2 style="text-align: center;">
-        Login / Sign Up
-      </h2>
+      <h2 style="text-align: center">Login / Sign Up</h2>
       <!-- TODO: We should hide this if a user is already logged in and show logout instead -->
-      Email: <input
+      Email:
+      <input
         v-model.trim="email"
         type="text"
-        style="text-align: left; margin-left: 10%;"
+        style="text-align: left; margin-left: 10%"
         placeholder="example@email.com"
-      >
-      <br>
-      Password: <input
-        v-model.trim="password"
-        type="password"
-        placeholder="password"
-      >
+      />
+      <br />
+      Password:
+      <input v-model.trim="password" type="password" placeholder="password" />
       <template
         v-if="password != null && password.length != 0 && password.length < 6"
-        style="color:red"
+        style="color: red"
       >
-        <br>Your password must be at least 6 characters
+        <br />Your password must be at least 6 characters
       </template>
-      <br>
-      <br>
-      <br>
-      <button @click="createUser()">
-        Create User
-      </button>
-      <br>
-      <button @click="login()">
-        Login
-      </button>
+      <br />
+      <br />
+      <br />
+      <button @click="createUser()">Create User</button>
+      <br />
+      <button @click="login()">Login</button>
       <!-- TODO: Update the styling here to color:red -->
       <template v-if="userNotFound">
-        <br>
+        <br />
         User not found
       </template>
       <template v-if="invalidPassword">
-        <br>
+        <br />
         Invalid password
       </template>
     </template>
     <template v-else>
-      <button @click="signOut()">
-        Sign Out
-      </button>
+      <button @click="signOut()">Sign Out</button>
     </template>
   </div>
 </template>
 
-
-
 <script>
 import { auth } from "../firebaseResources";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+} from "firebase/auth";
 
 export default {
   // For this component to work you'll need to enable auth in your project and minimally enable
   // email/password as a authentication provider
-  
+
   data() {
     return {
       email: null,
@@ -97,7 +89,7 @@ export default {
 
         // Mark that we are now logged in
         this.userLoggedIn = true;
-      } catch(err) {
+      } catch (err) {
         if (err.code) {
           // Process auth specific error messages and display them to the user
           if (err.code === "auth/wrong-password") {
@@ -124,7 +116,7 @@ export default {
         // Mark that we are now logged in
         this.userLoggedIn = true;
         console.log("Current user", auth.currentUser);
-      } catch(err) {
+      } catch (err) {
         console.error("Error in createUser", err);
       }
     },
@@ -138,16 +130,16 @@ export default {
         } else {
           console.warn("No user signed in");
         }
-      } catch(err) {
+      } catch (err) {
         console.error("Error in signOut", err);
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style>
-    .userLogin {
-        margin-top: 10%;
-    }
+.userLogin {
+  margin-top: 10%;
+}
 </style>

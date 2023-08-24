@@ -18,7 +18,7 @@ const router = createRouter({
       component: () => import("../views/About.vue"),
     },
     {
-      path:"/UserInput",
+      path: "/UserInput",
       name: "UserInput",
       component: UserInput,
     },
@@ -31,8 +31,8 @@ const router = createRouter({
       path: "/UserAuth",
       name: "UserAuth",
       component: UserAuth,
-    }
-  ]
+    },
+  ],
 });
 
 export default router;
