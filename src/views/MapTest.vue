@@ -16,9 +16,6 @@
     name: 'MapTest',
     data() {
       return {
-        trashCans: [],
-        recyclingBins: [],
-        combustibleBins: [],
       }
     },
     mounted() {
@@ -41,8 +38,6 @@
         let map = new google.maps.Map(document.getElementById('map'), mapOptions); 
 
       },
-
-      
     }
   }
   </script>
