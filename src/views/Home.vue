@@ -38,6 +38,18 @@
 <script>
 
 import Map from "../components/Map.vue";
+import { db } from "../firebaseResources";
+import {
+      collection,
+      doc,
+      addDoc,
+      setDoc,
+      getDoc,
+      getDocs,
+      query,
+      where,
+      deleteDoc,
+  } from "firebase/firestore";
 
   export default {
     components: { Map },
