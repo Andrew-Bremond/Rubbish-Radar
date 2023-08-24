@@ -5,7 +5,7 @@
     <div id="map"></div>
       <body>
         <div class="userInput">
-          <h1>Add Trash Can</h1>
+          <h1 style="text-align: center;">Add Trash Can</h1>
           <br>
           <input v-model="additionalInfo" placeholder="Info About Location">
           <br>
@@ -466,5 +466,10 @@ import {
     height: 80vh;
     width: 80vw;
     color: black;
+    margin-top: 30%;
+  }
+  .userInput{
+    margin-bottom: 20%;
+    margin-top: 10%;
   }
 </style>
