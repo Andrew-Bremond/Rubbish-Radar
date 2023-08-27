@@ -1,1 +1,3 @@
-<a href = "https://www.linkedin.com/in/torisutan/"> Tristan Cai </a>
+
+Arjun Bhalla: [GitHub](https://github.com/arjunbhalla03)
+
