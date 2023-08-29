@@ -137,12 +137,12 @@ import {
           google.maps.event.trigger(marker, 'click');
         }
    
-      //let greenMarker = "https://github.com/Rubbish-Radar/RubbishRadar/blob/master/src/images/greenMarker.png";
-      let myLatLng = new google.maps.LatLng(this.locArray[0].location.latitude, this.locArray[0].location.longitude);
+      let greenMarker = "Rubbish-Radar/RubbishRadar/blob/master/src/images/greenMarker.png";
+      let myLatLng = new google.maps.LatLng(35.7148, 139.7967);
       let staticMarker = new google.maps.Marker({
         position: myLatLng,
         title : "trashbin by Sensoji",
-        icon: "RubbishRadar/src/images/greenMarker.png"
+        icon: greenMarker
       });
       // google.maps.event.addListener(staticMarker, 'click', function(){
       //   infoWindow.setContent('<p> this.locArray[i].info </p>' + '<br>' + '<button @click="upvote">Upvote</button>'
