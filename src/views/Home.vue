@@ -1,22 +1,25 @@
 <template>
-  <img src="../images/rubbish-radar-high-resolution-color-logo.png" alt="Rubbish_Radar_Logo_pic" 
-    style = "width: 100%; top: 35px; object-fit: none; height: 400px; position: absolute;">
-
+  <!-- <img src="../images/rubbish-radar-high-resolution-color-logo.png" alt="Rubbish_Radar_Logo_pic" 
+    style = "width: 100%; top: 35px; object-fit: none; height: 400px; position: absolute;"> -->
+    <img class="pollpic" src="../images/pollution.jpg" alt="pollution pic">
+    <img class="logo" src="../images/new_logo.png" alt="Rubbish_Radar_Logo_pic">
+    
     <Map></Map>
-      <body>
-        <div class="userInput">
-          <h1 style="text-align: center;">Add Trash Can</h1>
-          <br>
-          <input v-model="additionalInfo" placeholder="Info About Location">
-          <br>
-          <button @click="addTrashCan">Add Trash Can</button>
-          <!-- <p v-if="location">Trash can added at location: {{location.latitude}}, {{location.longitude}}</p> -->
-          <button @click="addRecyclingBin">Add Recycling Bin</button>
-          <!-- <p v-if="location">Recycling Bin added at location: {{location.latitude}}, {{location.longitude}}</p> -->
-          <button @click="addCombustible">Add Combustable Bin</button>
-          <p v-if="location">Added at location: {{location.latitude}}, {{location.longitude}}</p>
-        </div>
-      </body>
+
+    <body>
+      <div class="userInput">
+        <h1 style="text-align: center;">Add Trash Can</h1>
+        <br>
+        <input v-model="additionalInfo" placeholder="Info About Location">
+        <br>
+        <button @click="addTrashCan">Add Trash Can</button>
+        <!-- <p v-if="location">Trash can added at location: {{location.latitude}}, {{location.longitude}}</p> -->
+        <button @click="addRecyclingBin">Add Recycling Bin</button>
+        <!-- <p v-if="location">Recycling Bin added at location: {{location.latitude}}, {{location.longitude}}</p> -->
+        <button @click="addCombustible">Add Combustable Bin</button>
+        <p v-if="location">Added at location: {{location.latitude}}, {{location.longitude}}</p>
+      </div>
+    </body>
 </template>
 
 <script>
@@ -270,11 +273,20 @@ QuerySnapshot,
 }
 </script>
 
-<style scoped>
-  #map {
-    height: 80vh;
-    width: 80vw;
-    color: black;
-    margin-top: 30%;
+<style>
+  .pollpic {
+    object-fit:fill; 
+    width:100%;  
+    height: 105%;
+    margin-top: -1%; 
+    opacity: 75%;
+  }
+  .logo {
+    position: absolute; 
+    object-fit: contain; 
+    width: 50%; 
+    height: auto; 
+    position: absolute; 
+    top: 10%; 
   }
 </style>
