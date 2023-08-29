@@ -152,7 +152,7 @@ QuerySnapshot,
 
       google.maps.event.trigger(marker, 'click');
 
-      marker.setIcon(greenMarker);
+      //marker.setIcon(greenMarker);
       marker.setMap(map);
     },
     async addTrashCan() {
