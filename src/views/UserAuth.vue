@@ -42,7 +42,7 @@
 
     </template>
       <template v-else>
-            <button @click="signOut">Sign Out</button>
+            <button class = "trashButtons" @click="signOut">Sign Out</button>
       </template>
     </div>
 </template>
@@ -132,6 +132,23 @@ export default {
     border-bottom-width: 5%; */
   }
   .social-button {
+    background-color: #31c48d;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+    min-width: 180px;
+    min-height: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 110%;
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-top: 2px;
+    margin-bottom: 2px;
     max-width: 100%;
     width: 60%;
   }

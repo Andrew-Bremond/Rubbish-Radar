@@ -4,7 +4,7 @@
           <input v-model="latit" placeholder="Latitude">
           <input v-model="longit" placeholder="Longitude">
           <br>
-          <button @click="addCustom"> Add Bin </button>
+          <button class = "trashButtons" @click="addCustom"> Add Bin </button>
           <p v-if="location">Added at location: {{location.latitude}}, {{location.longitude}}</p>
     </div>
 </template>

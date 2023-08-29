@@ -140,7 +140,7 @@ ul li:before {
   top: 0;
 }
 
-button {
+.trashButtons {
   background-color: #31c48d;
   color: black;
   padding: 10px 20px;

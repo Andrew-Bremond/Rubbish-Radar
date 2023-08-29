@@ -12,10 +12,11 @@
           <br>
           <input v-model="additionalInfo" placeholder="Info About Location">
           <br>
-          <button @click="addTrashCan">Add Trash Can</button>
-          <button @click="addRecyclingBin">Add Recycling Bin</button>
+          <button class = "trashButtons" @click="addTrashCan">Add Trash Can</button>
+          <!-- <p v-if="location">Trash can added at location: {{location.latitude}}, {{location.longitude}}</p> -->
+          <button class = "trashButtons" @click="addRecyclingBin">Add Recycling Bin</button>
           <!-- <p v-if="location">Recycling Bin added at location: {{location.latitude}}, {{location.longitude}}</p> -->
-          <button @click="addCombustible">Add Combustable Bin</button>
+          <button class = "trashButtons" @click="addCombustible">Add Combustable Bin</button>
           <br>
           <p v-if="location">Added at location: {{location.latitude}}, {{location.longitude}}</p>
         </div>
@@ -138,9 +139,10 @@ import UserInputMap from "../components/userInputMap.vue";
           let locationVar = this.locArray[i].location.info;
 
           google.maps.event.addListener(marker, 'click', function(){
+          
+            infoWindow.setContent('<p>' + locationVar + '</p>' + '<p>' + type + '</p>' + '<button class = "trashButtons" @click="upvote">Upvote</button>'
+             + '<button class = "trashButtons" @click="downvote">Downvote</button>');
 
-            infoWindow.setContent('<p>' + locationVar + '</p>'  + '<p>' + type + "</p>" + '<button @click="upvote">Upvote</button>'
-             + '<button @click="downvote">Downvote</button>');
 
             infoWindow.open(map, this);
           });
