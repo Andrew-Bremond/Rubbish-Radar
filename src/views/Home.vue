@@ -1,7 +1,9 @@
 <template>
-  <img src="../images/rubbish-radar-high-resolution-color-logo.png" alt="Rubbish_Radar_Logo_pic" 
-    style = "width: 100%; top: 35px; object-fit: none; height: 400px; position: absolute;">
-
+  <!-- <img src="../images/rubbish-radar-high-resolution-color-logo.png" alt="Rubbish_Radar_Logo_pic" 
+    style = "width: 100%; top: 35px; object-fit: none; height: 400px; position: absolute;"> -->
+    <img class="pollpic" src="../images/pollution.jpg" alt="pollution pic">
+    <img class="logo" src="../images/new_logo.png" alt="Rubbish_Radar_Logo_pic">
+    
     <Map></Map>
       <body>
         <UserInputMap></UserInputMap>
@@ -10,15 +12,16 @@
           <br>
           <input v-model="additionalInfo" placeholder="Info About Location">
           <br>
-          <button @click="addTrashCan">Add Trash Can</button>
+          <button class = "trashButtons" @click="addTrashCan">Add Trash Can</button>
           <!-- <p v-if="location">Trash can added at location: {{location.latitude}}, {{location.longitude}}</p> -->
-          <button @click="addRecyclingBin">Add Recycling Bin</button>
+          <button class = "trashButtons" @click="addRecyclingBin">Add Recycling Bin</button>
           <!-- <p v-if="location">Recycling Bin added at location: {{location.latitude}}, {{location.longitude}}</p> -->
-          <button @click="addCombustible">Add Combustable Bin</button>
+          <button class = "trashButtons" @click="addCombustible">Add Combustable Bin</button>
           <br>
           <p v-if="location">Added at location: {{location.latitude}}, {{location.longitude}}</p>
         </div>
       </body>
+
 </template>
 
 <script>
@@ -101,6 +104,13 @@ import { ref, toHandlers } from "vue";
               infoWindow.setContent("Your Location");
               infoWindow.open(map);
               map.setCenter(pos);
+
+              google.maps.event.addListener(map, "click", (mapsMouseEvent) => {
+                infoWindow.close();
+                infoWindow.setPosition(mapsMouseEvent.latLng)
+                infoWindow.setContent(mapsMouseEvent.latLng.lat() + " / " + mapsMouseEvent.latLng.lng());
+                infoWindow.open(map);
+              });
             },
               () => {
                 handleLocationError(true, infoWindow, map.getCenter());
@@ -131,32 +141,38 @@ import { ref, toHandlers } from "vue";
         });
 
         for(let i = 0; i < this.locArray.length; i ++){
-          let type = this.locArray[i].type;
+          let type = this.locArray[i].location.type;
           let marker = new google.maps.Marker({
             position: new google.maps.LatLng(this.locArray[i].location.latitude, this.locArray[i].location.longitude),
             map: map
           });
           
           marker.setMap(map);
-          let contentString = this.locArray[i].location.info;
-          let upvoteButtonString = '<button @click="upvote(this.locArray[i].id)">Upvote</button>' 
-          let downvoteButtonString = '<button @click="downvote(this.locArray[i].id)">Downvote</button>' 
-          //console.log(this.locArray[i].id);
+
+          let locationVar = this.locArray[i].location.info;
+          let latCoor = this.locArray[i].location.latitude;
+          let longCoor = this.locArray[i].location.longitude;
           google.maps.event.addListener(marker, 'click', function(){
-            infoWindow.setContent('<p>' + contentString + '</p>' + '<br>' + upvoteButtonString + downvoteButtonString);
+          
+            infoWindow.setContent('<p>' + locationVar + '</p>' + '<p>' + type + '</p>' + 
+            '<p>' + "(" + latCoor + ", " + longCoor + ")" + '</p>' +
+            '<button class = "trashButtons" @click=upvote(this.locArray[i].id)>Upvote</button>' + 
+            '<button class = "trashButtons" @click="downvote(this.locArray[i].id)">Downvote</button>');
+
+
             infoWindow.open(map, this);
           });
           
           google.maps.event.trigger(marker, 'click');
         }
-
-      //let greenMarker = '../images/greenMarker.png';
-      // let myLatLng = new google.maps.LatLng(this.locArray[0].location.latitude, this.locArray[0].location.longitude);
-      // let staticMarker = new google.maps.Marker({
-      //   position: myLatLng,
-      //   title : "trashbin by Sensoji"
-      //   // icon: greenMarker
-      // });
+   
+      //let greenMarker = "Rubbish-Radar/RubbishRadar/blob/master/src/images/greenMarker.png";
+      //let myLatLng = new google.maps.LatLng(35.7148, 139.7967);
+      //let staticMarker = new google.maps.Marker({
+      //  position: myLatLng,
+      //  title : "trashbin by Sensoji",
+      //  icon: greenMarker
+      //});
       // google.maps.event.addListener(staticMarker, 'click', function(){
       //   infoWindow.setContent('<p> this.locArray[i].info </p>' + '<br>' + '<button @click="upvote">Upvote</button>'
       //     + '<button @click="downvote">Downvote</button>');
@@ -166,7 +182,7 @@ import { ref, toHandlers } from "vue";
 
       // google.maps.event.trigger(staticMarker, 'click');
 
-      // staticMarker.setMap(map);
+       //staticMarker.setMap(map);
     },
     async addTrashCan() {
       if("geolocation" in navigator){
@@ -179,7 +195,7 @@ import { ref, toHandlers } from "vue";
                   latitude: position.coords.latitude,
                   longitude: position.coords.longitude,
                   info: this.additionalInfo,
-                  type: 'trashcan',
+                  type: 'Trash Can',
                   upvoteCount: 0,
                   downvoteCount: 0,
               };
@@ -207,7 +223,7 @@ import { ref, toHandlers } from "vue";
                   latitude: position.coords.latitude,
                   longitude: position.coords.longitude,
                   info: this.additionalInfo,
-                  type: 'recycling',
+                  type: 'Recycling Bin',
                   upvoteCount: 0,
                   downvoteCount: 0,
               };
@@ -236,7 +252,7 @@ import { ref, toHandlers } from "vue";
                   latitude: position.coords.latitude,
                   longitude: position.coords.longitude,
                   info: this.additionalInfo,
-                  type: 'combustibles',
+                  type: 'Combustible Bin',
                   upvoteCount: 0,
                   downvoteCount: 0,
               };
@@ -304,11 +320,20 @@ import { ref, toHandlers } from "vue";
 }
 </script>
 
-<style scoped>
-  #map {
-    height: 80vh;
-    width: 80vw;
-    color: black;
-    margin-top: 30%;
+<style>
+  .pollpic {
+    object-fit:fill; 
+    width:100%;  
+    height: 105%;
+    margin-top: -1%; 
+    opacity: 75%;
+  }
+  .logo {
+    position: absolute; 
+    object-fit: contain; 
+    width: 50%; 
+    height: auto; 
+    position: absolute; 
+    top: 10%; 
   }
 </style>

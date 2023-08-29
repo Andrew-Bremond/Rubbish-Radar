@@ -2,33 +2,49 @@
   <div class="userLogin">
     <template v-if="!userLoggedIn">
       <h2 style="text-align: center;">Login / Sign Up</h2>
-      Email: <input type="text" v-model.trim="email" placeholder="example@email.com"/>
+      
+      <p style="text-align: left; ">
+      Email: &nbsp; &nbsp; &nbsp; &nbsp; <input type="text" class="inputBox" v-model.trim="email" placeholder="example@email.com"/>
       <br>
-      Password: <input type="password" v-model.trim="password" placeholder="password"/>
+      Password: &nbsp; <input type="password" class="inputBox" v-model.trim="password" placeholder="password"/>
       <template v-if="password && password.length < 6" style="color:red">
         <br>Your password must be at least 6 characters
       </template>
-      <br><br><br>
-      <button @click="createUser">Create User</button>
+      </p>
+
+      <button class="social-button" @click="createUser">Create User</button>
       <br>
-      <button @click="login">Login</button>
+      <button class="social-button" @click="login">Login</button>
+      <br>
+      <br>
+      or
+      <br>
+      <br>
+      <button class="social-button" style="background-color: rgb(226, 226, 226);" @click="socialLogin">
+          <img alt="Google Logo" src="../assets/google-logo4.png">
+          &nbsp; &nbsp; Sign in with Google
+      </button>
+      <br>
+      <br>
+
       <template v-if="userNotFound">
         <br>User not found
       </template>
       <template v-if="invalidPassword">
         <br>Invalid password
       </template>
-      <p>
-        or Sign In with Google <br>
+
+      <!-- <p>
         <button class="social-button" @click="socialLogin">
           <img alt="Google Logo" src="../assets/google-logo4.png">
         </button>
-      </p>
+      </p> -->
+
     </template>
-    <template v-else>
-      <button @click="signOut">Sign Out</button>
-    </template>
-  </div>
+      <template v-else>
+            <button class = "trashButtons" @click="signOut">Sign Out</button>
+      </template>
+    </div>
 </template>
 
 <script>
@@ -105,21 +121,46 @@ export default {
 
 <style>
   .userLogin {
-    margin-top: 10%;
+    margin-top: 5%;
+    width: 40%;
+    padding: 5%;
+    /* background-color: white;
+    border-radius: 15%; */
+    /* border-width: 100%;
+    border-style:solid;
+    border-color:grey;
+    border-bottom-width: 5%; */
   }
   .social-button {
-    width: 50px;
-    background: white;
-    padding: 10px;
-    border-radius: 50%;
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
-    outline: 0;
-    border: 0;
-  }
-  .social-button:active {
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.1);
+    background-color: #31c48d;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+    min-width: 180px;
+    min-height: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 110%;
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    max-width: 100%;
+    width: 60%;
   }
   .social-button img {
-    width: 50%;
+    object-fit: contain;
+    width: 7%;
+    height: auto;
+    text-align: left;
+  }
+  .inputBox {
+    border-radius: 10px;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+    border: 0;
   }
 </style>

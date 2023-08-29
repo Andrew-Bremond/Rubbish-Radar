@@ -140,7 +140,7 @@ ul li:before {
   top: 0;
 }
 
-button {
+.trashButtons {
   background-color: #31c48d;
   color: black;
   padding: 10px 20px;
@@ -177,7 +177,7 @@ header {
 
 input {
   text-align:left;
-  width: 70%;
+  width: 80%;
   padding: 10px;
   border-radius: 5px;
 }
