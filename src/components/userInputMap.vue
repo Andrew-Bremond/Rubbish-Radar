@@ -4,7 +4,7 @@
           <input v-model="latit" placeholder="Latitude">
           <input v-model="longit" placeholder="Longitude">
           <br>
-          <button @click="addCustom"> Add Combustable Bin </button>
+          <button @click="addCustom"> Add Bin </button>
           <p v-if="location">Added at location: {{location.latitude}}, {{location.longitude}}</p>
     </div>
 </template>
@@ -46,7 +46,7 @@ async addCustom() {
                   latitude: this.latit,
                   longitude: this.longit,
                   info: this.additionalInfo,
-                  type: 'trashcan',
+                  type: 'customBin',
                   upvoteCount: 0,
                   downvoteCount: 0,
               };
