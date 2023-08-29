@@ -32,6 +32,9 @@ export default {
       } catch (err) {
         alert('Error: ' + err.message);
       }
+        const userCredential = await signInWithEmailAndPassword(auth, this.email, this.password);
+        this.isLoggedIn = true
+        this.$router.replace('home');
     },
     async socialLogin() {
       const auth = getAuth();
