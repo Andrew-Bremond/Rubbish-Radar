@@ -31,6 +31,7 @@ import Map from "../components/Map.vue"
 import { db } from "../firebaseResources"
 import {
     collection,
+    getFirestore,
     doc,
     addDoc,
     setDoc,
@@ -40,8 +41,10 @@ import {
     where,
     deleteDoc,
     QuerySnapshot,
+    updateDoc,
 } from 'firebase/firestore'
 import UserInputMap from "../components/userInputMap.vue";
+import { ref, toHandlers } from "vue";
 
   export default {
     components: { Map, UserInputMap },
@@ -60,7 +63,6 @@ import UserInputMap from "../components/userInputMap.vue";
         script.onload = async() => {
           await this.getLocations();
           this.initMap();
-          console.log(this.locArray);
         };
       } else {
         await this.getLocations();
@@ -127,33 +129,50 @@ import UserInputMap from "../components/userInputMap.vue";
           infoWindow.open(map);
         }
 
+        const collectionRef = collection(db, "locations");
+        getDocs(collectionRef).then((querySnapshot)  =>  {
+          querySnapshot.forEach((document)=> {
+            const documentID = document.id;
+            const docRef = doc(db, "locations", documentID);
+            updateDoc(docRef, {
+              id: documentID,
+            });
+          });
+        });
+
         for(let i = 0; i < this.locArray.length; i ++){
           let type = this.locArray[i].location.type;
           let marker = new google.maps.Marker({
             position: new google.maps.LatLng(this.locArray[i].location.latitude, this.locArray[i].location.longitude),
             map: map
           });
-
+          
           marker.setMap(map);
 
           let locationVar = this.locArray[i].location.info;
-
+          let latCoor = this.locArray[i].location.latitude;
+          let longCoor = this.locArray[i].location.longitude;
           google.maps.event.addListener(marker, 'click', function(){
-            infoWindow.setContent('<p>' + locationVar + '</p>' + '<p>' + type + '</p>' + '<button class = "trashButtons" @click="upvote">Upvote</button>'
-             + '<button class = "trashButtons" @click="downvote">Downvote</button>');
+
+          
+            infoWindow.setContent('<p>' + locationVar + '</p>' + '<p>' + type + '</p>' + 
+            '<p>' + "(" + latCoor + ", " + longCoor + ")" + '</p>' +
+            '<button class = "trashButtons" @click=upvote(this.locArray[i].id)>Upvote</button>' + 
+            '<button class = "trashButtons" @click="downvote(this.locArray[i].id)">Downvote</button>');
+
             infoWindow.open(map, this);
           });
-
+          
           google.maps.event.trigger(marker, 'click');
         }
    
-      let greenMarker = "Rubbish-Radar/RubbishRadar/blob/master/src/images/greenMarker.png";
-      let myLatLng = new google.maps.LatLng(35.7148, 139.7967);
-      let staticMarker = new google.maps.Marker({
-        position: myLatLng,
-        title : "trashbin by Sensoji",
-        icon: greenMarker
-      });
+      //let greenMarker = "Rubbish-Radar/RubbishRadar/blob/master/src/images/greenMarker.png";
+      //let myLatLng = new google.maps.LatLng(35.7148, 139.7967);
+      //let staticMarker = new google.maps.Marker({
+      //  position: myLatLng,
+      //  title : "trashbin by Sensoji",
+      //  icon: greenMarker
+      //});
       // google.maps.event.addListener(staticMarker, 'click', function(){
       //   infoWindow.setContent('<p> this.locArray[i].info </p>' + '<br>' + '<button @click="upvote">Upvote</button>'
       //     + '<button @click="downvote">Downvote</button>');
@@ -163,7 +182,7 @@ import UserInputMap from "../components/userInputMap.vue";
 
       // google.maps.event.trigger(staticMarker, 'click');
 
-       staticMarker.setMap(map);
+       //staticMarker.setMap(map);
     },
     async addTrashCan() {
       if("geolocation" in navigator){
@@ -180,7 +199,6 @@ import UserInputMap from "../components/userInputMap.vue";
                   upvoteCount: 0,
                   downvoteCount: 0,
               };
-
               const docReference = await addDoc(
                   collection(db, 'locations'),
                   {
@@ -263,11 +281,40 @@ import UserInputMap from "../components/userInputMap.vue";
         console.error("Error getting location: ", error);
       }
     },
-    async upvote(){
-
+    async upvote(docID){
+      try {
+        //console.log('test');
+        const docRef = doc(db, "locations", docID);
+        const docSnap = await getDoc(docRef);
+        console.log(docSnap.data());
+        const currentData = docSnap.data();
+        const updateUpvote = currentData.location.upvoteCount + 1;
+        console.log(updateUpvote);
+        //console.log('test');
+        await updateDoc(docRef, {
+          'location.upvoteCount': updateUpvote,
+        });
+        console.log("Upvoted");
+      } catch (error){
+        console.log("Error upvoting: ", error);
+      }
     },
-    async downvote(){
+    async downvote(docID){
+      try {
+        const docRef = doc(db, "locations", docID);
+        const docSnap = await getDoc(docRef);
 
+        const currentData = docSnap.data();
+        const updateDownvote = currentData.location.downvoteCount + 1;
+
+        await updateDoc(docRef, {
+          'location.downvoteCount': updateDownvote,
+        });
+        console.log("Downvoted"); 
+        await this.getLocations();
+      } catch (error){
+        console.log("Error downvoting: ", error);
+      }
     },
   },
 }
