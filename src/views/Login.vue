@@ -25,6 +25,13 @@ export default {
     async login() {
       console.log('login passed');
       const auth = getAuth();
+      try {
+        const userCredential = await signInWithEmailAndPassword(auth, this.email, this.password);
+        this.isLoggedIn = true
+        this.$router.replace('home');
+      } catch (err) {
+        alert('Error: ' + err.message);
+      }
         const userCredential = await signInWithEmailAndPassword(auth, this.email, this.password);
         this.isLoggedIn = true
         this.$router.replace('home');
