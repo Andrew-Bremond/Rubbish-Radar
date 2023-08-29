@@ -5,16 +5,28 @@
       
       <p style="text-align: left; ">
       Email: &nbsp; &nbsp; &nbsp; &nbsp; <input type="text" class="inputBox" v-model.trim="email" placeholder="example@email.com"/>
-      </p>
       <br>
       Password: &nbsp; <input type="password" class="inputBox" v-model.trim="password" placeholder="password"/>
       <template v-if="password && password.length < 6" style="color:red">
         <br>Your password must be at least 6 characters
       </template>
-      <br><br><br>
-      <button class = "trashButtons" @click="createUser">Create User</button>
+      </p>
+
+      <button class="social-button" @click="createUser">Create User</button>
       <br>
-      <button class = "trashButtons" @click="login">Login</button>
+      <button class="social-button" @click="login">Login</button>
+      <br>
+      <br>
+      or
+      <br>
+      <br>
+      <button class="social-button" style="background-color: rgb(226, 226, 226);" @click="socialLogin">
+          <img alt="Google Logo" src="../assets/google-logo4.png">
+          &nbsp; &nbsp; Sign in with Google
+      </button>
+      <br>
+      <br>
+
       <template v-if="userNotFound">
         <br>User not found
       </template>
@@ -29,10 +41,10 @@
       </p> -->
 
     </template>
-    <template v-else>
-      <button class = "trashButtons" @click="signOut">Sign Out</button>
-    </template>
-  </div>
+      <template v-else>
+            <button class = "trashButtons" @click="signOut">Sign Out</button>
+      </template>
+    </div>
 </template>
 
 <script>
@@ -120,6 +132,23 @@ export default {
     border-bottom-width: 5%; */
   }
   .social-button {
+    background-color: #31c48d;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+    min-width: 180px;
+    min-height: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 110%;
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-top: 2px;
+    margin-bottom: 2px;
     max-width: 100%;
     width: 60%;
   }

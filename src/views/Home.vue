@@ -128,7 +128,7 @@ import UserInputMap from "../components/userInputMap.vue";
         }
 
         for(let i = 0; i < this.locArray.length; i ++){
-          let type = this.locArray[i].type;
+          let type = this.locArray[i].location.type;
           let marker = new google.maps.Marker({
             position: new google.maps.LatLng(this.locArray[i].location.latitude, this.locArray[i].location.longitude),
             map: map
@@ -140,8 +140,8 @@ import UserInputMap from "../components/userInputMap.vue";
 
           google.maps.event.addListener(marker, 'click', function(){
 
-            infoWindow.setContent('<p>' + locationVar + '</p>' + '<br>' + '<button @click="upvote">Upvote</button>'
-             + '<button @click="downvote">Downvote</button>');
+            infoWindow.setContent('<p>' + locationVar + '</p>' + '<p>' + type + '</p>' + '<button class = "trashButtons" @click="upvote">Upvote</button>'
+             + '<button class = "trashButtons" @click="downvote">Downvote</button>');
 
             infoWindow.open(map, this);
           });
