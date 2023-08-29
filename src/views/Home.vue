@@ -4,6 +4,7 @@
 
     <Map></Map>
       <body>
+        <UserInputMap></UserInputMap>
         <div class="userInput">
           <h1 style="text-align: center;">Add Trash Can</h1>
           <br>
@@ -14,6 +15,7 @@
           <button @click="addRecyclingBin">Add Recycling Bin</button>
           <!-- <p v-if="location">Recycling Bin added at location: {{location.latitude}}, {{location.longitude}}</p> -->
           <button @click="addCombustible">Add Combustable Bin</button>
+          <br>
           <p v-if="location">Added at location: {{location.latitude}}, {{location.longitude}}</p>
         </div>
       </body>
@@ -36,9 +38,10 @@ import {
     deleteDoc,
     QuerySnapshot,
 } from 'firebase/firestore'
+import UserInputMap from "../components/userInputMap.vue";
 
   export default {
-    components: { Map },
+    components: { Map, UserInputMap },
     data(){
       return {
           additionalInfo: '',
