@@ -37,15 +37,15 @@
 
       <h2> Why Choose Rubbish Radar </h2>
        <ul>
-        <li>
+        <li class = "aboutUs">
           To create a global community-driven platform where every disposed of item finds its way to 
           a garbage disposal promoting easy accessibility to our users.
         </li>
-        <li>
+        <li class = "aboutUs">
           User-Friendly Interface: Our web application is designed for simplicity and ease of use, 
           ensuring that you find the nearest trash bin in seconds.
         </li>
-        <li>
+        <li class = "aboutUs">
           Environmentally Driven: By ensuring easy access to trash cans, 
           we hope to reduce littering and encourage proper waste disposal.
         </li>
@@ -57,13 +57,13 @@
         we hope to reduce littering and encourage proper waste disposal.
       </p>
       <ul>
-        <li>
+        <li class = "aboutUs">
           Spread the Word: The more users we have, the more locations we can map.
         </li>
-        <li>
+        <li class = "aboutUs">
           Join a Cleanup: Take your commitment to the next level by joining or organizing a local cleanup event.
         </li>
-        <li>
+        <li class = "aboutUs">
           Provide Feedback: We're always looking to improve. Share your suggestions, experiences, and ideas with us.
         </li>
       </ul>
