@@ -117,17 +117,18 @@ import {
         for(let i = 0; i < this.locArray.length; i ++){
           let type = this.locArray[i].type;
           let marker = new google.maps.Marker({
-            position: new google.maps.LatLng(this.locArray[i].latitude, this.locArray[i].longitude),
+            position: new google.maps.LatLng(this.locArray[i].location.latitude, this.locArray[i].location.longitude),
             map: map
           });
 
+          marker.setMap(map);
 
           google.maps.event.addListener(marker, 'click', function(){
           // return function(){
           //   infoWindow.setContent(locArray[i].info);
           //   infoWindow.open(map, marker);
           // }
-            infoWindow.setContent('<p> locArray[i].info </p>' + '<br>' + '<button @click="upvote">Upvote</button>'
+            infoWindow.setContent('<p> locArray[i].location.info </p>' + '<br>' + '<button @click="upvote">Upvote</button>'
              + '<button @click="downvote">Downvote</button>');
 
             infoWindow.open(map, this);
@@ -137,22 +138,22 @@ import {
         }
    
       //let greenMarker = '../images/greenMarker.png';
-      let myLatLng = new google.maps.LatLng(35.7148, 139.7967);
-      let staticMarker = new google.maps.Marker({
-        position: myLatLng,
-        title : "trashbin by Sensoji"
-        // icon: greenMarker
-      });
-      google.maps.event.addListener(staticMarker, 'click', function(){
-        infoWindow.setContent('<p> this.locArray[i].info </p>' + '<br>' + '<button @click="upvote">Upvote</button>'
-          + '<button @click="downvote">Downvote</button>');
+      // let myLatLng = new google.maps.LatLng(this.locArray[0].location.latitude, this.locArray[0].location.longitude);
+      // let staticMarker = new google.maps.Marker({
+      //   position: myLatLng,
+      //   title : "trashbin by Sensoji"
+      //   // icon: greenMarker
+      // });
+      // google.maps.event.addListener(staticMarker, 'click', function(){
+      //   infoWindow.setContent('<p> this.locArray[i].info </p>' + '<br>' + '<button @click="upvote">Upvote</button>'
+      //     + '<button @click="downvote">Downvote</button>');
 
-        infoWindow.open(map, this);
-      });
+      //   infoWindow.open(map, this);
+      // });
 
-      google.maps.event.trigger(staticMarker, 'click');
+      // google.maps.event.trigger(staticMarker, 'click');
 
-      staticMarker.setMap(map);
+      // staticMarker.setMap(map);
     },
     async addTrashCan() {
       if("geolocation" in navigator){
