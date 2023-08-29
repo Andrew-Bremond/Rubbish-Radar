@@ -35,6 +35,7 @@ import {
     where,
     deleteDoc,
     QuerySnapshot,
+updateDoc,
 } from 'firebase/firestore'
 
   export default {
@@ -44,6 +45,7 @@ import {
           additionalInfo: '',
           location: null,
           locArray: [],
+          locationIndex: -1,
       };
     },
     async mounted() {
@@ -54,7 +56,6 @@ import {
         script.onload = async() => {
           await this.getLocations();
           this.initMap();
-          console.log(this.locArray);
         };
       } else {
         await this.getLocations();
@@ -124,11 +125,8 @@ import {
           marker.setMap(map);
 
           google.maps.event.addListener(marker, 'click', function(){
-          // return function(){
-          //   infoWindow.setContent(locArray[i].info);
-          //   infoWindow.open(map, marker);
-          // }
-            infoWindow.setContent('<p> locArray[i].location.info </p>' + '<br>' + '<button @click="upvote">Upvote</button>'
+            this.locationIndex = i;
+            infoWindow.setContent('<p>' + locArray[i].location.info + '</p>' + '<br>' + '<button @click="upvote">Upvote</button>'
              + '<button @click="downvote">Downvote</button>');
 
             infoWindow.open(map, this);
@@ -254,10 +252,34 @@ import {
       }
     },
     async upvote(){
+      if(this.locationIndex > -1){
+        try{
+          const loc = this.locArray[this.locationIndex];
+          loc.upvoteCount++;
 
+          const upvoteUpdate = doc(db, 'locations', loc.id);
+          await updateDoc(upvoteUpdate, {
+            upvoteCount: loc.upvoteCount
+          });
+        } catch (error) {
+          console.error("Error upvoting: ", error);
+        }
+      }
     },
     async downvote(){
+      if(this.locationIndex > -1){
+        try{
+          const loc = this.locArray[this.locationIndex];
+          loc.downvoteCount++;
 
+          const downvoteUpdate = doc(db, 'locations', loc.id);
+          await updateDoc(downvoteUpdate, {
+            downvoteCount: loc.downvoteCount
+          });
+        } catch (error) {
+          console.error("Error downvoting: ", error);
+        }
+      }
     },
   },
 }
