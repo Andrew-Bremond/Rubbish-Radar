@@ -1,4 +1,5 @@
 <template>
+    <img class="binpic" src="../images/bins.png" alt="bins pic">
   <div class="userLogin">
     <template v-if="!userLoggedIn">
       <h2 style="text-align: center;">Login / Sign Up</h2>
@@ -42,6 +43,8 @@
 
     </template>
       <template v-else>
+            You are already signed in.
+            <br> <br>
             <button @click="signOut">Sign Out</button>
       </template>
     </div>
@@ -121,15 +124,30 @@ export default {
 
 <style>
   .userLogin {
-    margin-top: 5%;
+    margin-top: 0%;
     width: 40%;
-    padding: 5%;
-    /* background-color: white;
-    border-radius: 15%; */
+    min-height: 60%;
+    padding: 3%;
+    color: darkgray;
+    position: absolute;
+     /* background-image: url("../images/trashman.jpg"); 
+    background-size: 100%;
+    background-position-y: center;    */
+
+    background-color: rgb(58, 58, 58);
+    border-radius: 15%;
+    box-shadow: 0 0 20px 5px rgba(15,15,15);
     /* border-width: 100%;
     border-style:solid;
     border-color:grey;
     border-bottom-width: 5%; */
+  }
+  .binpic {
+    object-fit:fill; 
+    width: 100%;  
+    height: auto;
+    margin-top: -25%; 
+    opacity: 15%;
   }
   .social-button {
     max-width: 100%;
@@ -143,7 +161,7 @@ export default {
   }
   .inputBox {
     border-radius: 10px;
-    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+    box-shadow:0 0 15px 4px rgba(0, 0, 0);
     border: 0;
   }
 </style>
