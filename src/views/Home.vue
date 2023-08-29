@@ -153,12 +153,12 @@ import { ref, toHandlers } from "vue";
           let latCoor = this.locArray[i].location.latitude;
           let longCoor = this.locArray[i].location.longitude;
           google.maps.event.addListener(marker, 'click', function(){
+
           
             infoWindow.setContent('<p>' + locationVar + '</p>' + '<p>' + type + '</p>' + 
             '<p>' + "(" + latCoor + ", " + longCoor + ")" + '</p>' +
             '<button class = "trashButtons" @click=upvote(this.locArray[i].id)>Upvote</button>' + 
             '<button class = "trashButtons" @click="downvote(this.locArray[i].id)">Downvote</button>');
-
 
             infoWindow.open(map, this);
           });
