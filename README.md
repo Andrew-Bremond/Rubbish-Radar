@@ -1,1 +1,4 @@
-<a href = "https://www.linkedin.com/in/torisutan/"> Tristan Cai </a>
+
+Andrew Bremond: [Github](https://github.com/Andrew-Bremond)
+Julian Gonzalez: [Github](https://github.com/jgonz671)
+Arjun Bhalla: [GitHub](https://github.com/arjunbhalla03)
