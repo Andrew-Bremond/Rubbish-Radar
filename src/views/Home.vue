@@ -38,10 +38,10 @@ import {
     where,
     deleteDoc,
     QuerySnapshot,
-updateDoc,
+    updateDoc,
 } from 'firebase/firestore'
 import UserInputMap from "../components/userInputMap.vue";
-import { ref } from "vue";
+import { ref, toHandlers } from "vue";
 
   export default {
     components: { Map, UserInputMap },
@@ -119,6 +119,17 @@ import { ref } from "vue";
           infoWindow.open(map);
         }
 
+        const collectionRef = collection(db, "locations");
+        getDocs(collectionRef).then((querySnapshot)  =>  {
+          querySnapshot.forEach((document)=> {
+            const documentID = document.id;
+            const docRef = doc(db, "locations", documentID);
+            updateDoc(docRef, {
+              id: documentID,
+            });
+          });
+        });
+
         for(let i = 0; i < this.locArray.length; i ++){
           let type = this.locArray[i].type;
           let marker = new google.maps.Marker({
@@ -128,16 +139,17 @@ import { ref } from "vue";
           
           marker.setMap(map);
           let contentString = this.locArray[i].location.info;
+          let upvoteButtonString = '<button @click="upvote(this.locArray[i].id)">Upvote</button>' 
+          let downvoteButtonString = '<button @click="downvote(this.locArray[i].id)">Downvote</button>' 
+          //console.log(this.locArray[i].id);
           google.maps.event.addListener(marker, 'click', function(){
-            infoWindow.setContent('<p>' + contentString + '</p>' + '<br>' + '<button>Upvote</button>'
-             + '<button>Downvote</button>');
-
+            infoWindow.setContent('<p>' + contentString + '</p>' + '<br>' + upvoteButtonString + downvoteButtonString);
             infoWindow.open(map, this);
           });
-
+          
           google.maps.event.trigger(marker, 'click');
         }
-   
+
       //let greenMarker = '../images/greenMarker.png';
       // let myLatLng = new google.maps.LatLng(this.locArray[0].location.latitude, this.locArray[0].location.longitude);
       // let staticMarker = new google.maps.Marker({
@@ -177,7 +189,6 @@ import { ref } from "vue";
                       location: this.location,
                   }
               );
-              
           } catch (error) {
               console.error("Error getting location: ", error);
           }
@@ -254,7 +265,41 @@ import { ref } from "vue";
         console.error("Error getting location: ", error);
       }
     },
-    
+    async upvote(docID){
+      try {
+        //console.log('test');
+        const docRef = doc(db, "locations", docID);
+        const docSnap = await getDoc(docRef);
+        console.log(docSnap.data());
+        const currentData = docSnap.data();
+        const updateUpvote = currentData.location.upvoteCount + 1;
+        console.log(updateUpvote);
+        //console.log('test');
+        await updateDoc(docRef, {
+          'location.upvoteCount': updateUpvote,
+        });
+        console.log("Upvoted");
+      } catch (error){
+        console.log("Error upvoting: ", error);
+      }
+    },
+    async downvote(docID){
+      try {
+        const docRef = doc(db, "locations", docID);
+        const docSnap = await getDoc(docRef);
+
+        const currentData = docSnap.data();
+        const updateDownvote = currentData.location.downvoteCount + 1;
+
+        await updateDoc(docRef, {
+          'location.downvoteCount': updateDownvote,
+        });
+        console.log("Downvoted"); 
+        await this.getLocations();
+      } catch (error){
+        console.log("Error downvoting: ", error);
+      }
+    },
   },
 }
 </script>
