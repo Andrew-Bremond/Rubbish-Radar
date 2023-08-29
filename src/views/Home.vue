@@ -58,7 +58,7 @@ import { ref, toHandlers } from "vue";
     async mounted() {
       if (!window.google) {
         const script = document.createElement('script');
-        script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBkkgbhppn40r-DjzpnkAg0q7waZKQzsr8&callback=initMap&map_ids=74db84a2f64c1375';
+        script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBkkgbhppn40r-DjzpnkAg0q7waZKQzsr8&callback=initMap&map_ids=4af310b3e8d84ead';
         document.body.appendChild(script);
         script.onload = async() => {
           await this.getLocations();
@@ -80,7 +80,7 @@ import { ref, toHandlers } from "vue";
         {
           center: { lat: 41, lng: -87 },
           zoom: 16,
-          mapId: "74db84a2f64c1375",
+          mapId: "4af310b3e8d84ead",
         });
 
 
