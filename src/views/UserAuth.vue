@@ -9,9 +9,9 @@
         <br>Your password must be at least 6 characters
       </template>
       <br><br><br>
-      <button @click="createUser">Create User</button>
+      <button class = "trashButtons" @click="createUser">Create User</button>
       <br>
-      <button @click="login">Login</button>
+      <button class = "trashButtons" @click="login">Login</button>
       <template v-if="userNotFound">
         <br>User not found
       </template>
@@ -26,7 +26,7 @@
       </p>
     </template>
     <template v-else>
-      <button @click="signOut">Sign Out</button>
+      <button class = "trashButtons" @click="signOut">Sign Out</button>
     </template>
   </div>
 </template>
