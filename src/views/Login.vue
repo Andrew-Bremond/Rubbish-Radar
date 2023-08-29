@@ -20,6 +20,42 @@
         password: '',
         isLoggedIn: false
       };
+  <div id="login">
+    <p>
+      or Sign In with Google <br>
+      <button class="social-button" @click="socialLogin" v-if="!isLoggedIn"> 
+        <img alt="Google Logo" src="../assets/google-logo4.png">
+      </button>
+    </p>
+  </div>
+</template>
+
+<script>
+import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+
+export default {
+  name: 'login',
+  data() {
+    return {
+      email: '',
+      password: '',
+      isLoggedIn: false
+    };
+  },
+  methods: {
+    async login() {
+      console.log('login passed');
+      const auth = getAuth();
+      try {
+        const userCredential = await signInWithEmailAndPassword(auth, this.email, this.password);
+        this.isLoggedIn = true
+        this.$router.replace('home');
+      } catch (err) {
+        alert('Error: ' + err.message);
+      }
+        const userCredential = await signInWithEmailAndPassword(auth, this.email, this.password);
+        this.isLoggedIn = true
+        this.$router.replace('home');
     },
     methods: {
       async login() {
