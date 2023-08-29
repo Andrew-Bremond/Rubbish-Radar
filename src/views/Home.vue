@@ -28,6 +28,7 @@ import Map from "../components/Map.vue"
 import { db } from "../firebaseResources"
 import {
     collection,
+    getFirestore,
     doc,
     addDoc,
     setDoc,
@@ -40,6 +41,7 @@ import {
 updateDoc,
 } from 'firebase/firestore'
 import UserInputMap from "../components/userInputMap.vue";
+import { ref } from "vue";
 
   export default {
     components: { Map, UserInputMap },
@@ -48,7 +50,6 @@ import UserInputMap from "../components/userInputMap.vue";
           additionalInfo: '',
           location: null,
           locArray: [],
-          locationIndex: -1,
       };
     },
     async mounted() {
@@ -124,13 +125,12 @@ import UserInputMap from "../components/userInputMap.vue";
             position: new google.maps.LatLng(this.locArray[i].location.latitude, this.locArray[i].location.longitude),
             map: map
           });
-
+          
           marker.setMap(map);
-
+          let contentString = this.locArray[i].location.info;
           google.maps.event.addListener(marker, 'click', function(){
-            this.locationIndex = i;
-            infoWindow.setContent('<p>' + locArray[i].location.info + '</p>' + '<br>' + '<button @click="upvote">Upvote</button>'
-             + '<button @click="downvote">Downvote</button>');
+            infoWindow.setContent('<p>' + contentString + '</p>' + '<br>' + '<button>Upvote</button>'
+             + '<button>Downvote</button>');
 
             infoWindow.open(map, this);
           });
@@ -171,13 +171,13 @@ import UserInputMap from "../components/userInputMap.vue";
                   upvoteCount: 0,
                   downvoteCount: 0,
               };
-
               const docReference = await addDoc(
                   collection(db, 'locations'),
                   {
                       location: this.location,
                   }
               );
+              
           } catch (error) {
               console.error("Error getting location: ", error);
           }
@@ -254,36 +254,7 @@ import UserInputMap from "../components/userInputMap.vue";
         console.error("Error getting location: ", error);
       }
     },
-    async upvote(){
-      if(this.locationIndex > -1){
-        try{
-          const loc = this.locArray[this.locationIndex];
-          loc.upvoteCount++;
-
-          const upvoteUpdate = doc(db, 'locations', loc.id);
-          await updateDoc(upvoteUpdate, {
-            upvoteCount: loc.upvoteCount
-          });
-        } catch (error) {
-          console.error("Error upvoting: ", error);
-        }
-      }
-    },
-    async downvote(){
-      if(this.locationIndex > -1){
-        try{
-          const loc = this.locArray[this.locationIndex];
-          loc.downvoteCount++;
-
-          const downvoteUpdate = doc(db, 'locations', loc.id);
-          await updateDoc(downvoteUpdate, {
-            downvoteCount: loc.downvoteCount
-          });
-        } catch (error) {
-          console.error("Error downvoting: ", error);
-        }
-      }
-    },
+    
   },
 }
 </script>
