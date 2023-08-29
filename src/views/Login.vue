@@ -30,7 +30,7 @@ export default {
         this.isLoggedIn = true
         this.$router.replace('home');
       } catch (err) {
-        alert('Oops. ' + err.message);
+        alert('Error: ' + err.message);
       }
     },
     async socialLogin() {
