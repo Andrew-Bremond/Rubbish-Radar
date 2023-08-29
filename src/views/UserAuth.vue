@@ -28,6 +28,7 @@
     <template v-else>
       <button @click="signOut()">Sign Out</button>
     </template>
+    <Login />
     </div>
 </template>
 
@@ -36,10 +37,14 @@
 <script>
 import { auth } from '../firebaseResources';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import Login from '../views/Login.vue';
 
 export default {
   // For this component to work you'll need to enable auth in your project and minimally enable
   // email/password as a authentication provider
+  components : {
+    Login
+  },
   
   data() {
     return {
