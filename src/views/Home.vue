@@ -1,7 +1,9 @@
 <template>
-  <img src="../images/rubbish-radar-high-resolution-color-logo.png" alt="Rubbish_Radar_Logo_pic" 
-    style = "width: 100%; top: 35px; object-fit: none; height: 400px; position: absolute;">
-
+  <!-- <img src="../images/rubbish-radar-high-resolution-color-logo.png" alt="Rubbish_Radar_Logo_pic" 
+    style = "width: 100%; top: 35px; object-fit: none; height: 400px; position: absolute;"> -->
+    <img class="pollpic" src="../images/pollution.jpg" alt="pollution pic">
+    <img class="logo" src="../images/new_logo.png" alt="Rubbish_Radar_Logo_pic">
+    
     <Map></Map>
       <body>
         <UserInputMap></UserInputMap>
@@ -11,7 +13,6 @@
           <input v-model="additionalInfo" placeholder="Info About Location">
           <br>
           <button @click="addTrashCan">Add Trash Can</button>
-          <!-- <p v-if="location">Trash can added at location: {{location.latitude}}, {{location.longitude}}</p> -->
           <button @click="addRecyclingBin">Add Recycling Bin</button>
           <!-- <p v-if="location">Recycling Bin added at location: {{location.latitude}}, {{location.longitude}}</p> -->
           <button @click="addCombustible">Add Combustable Bin</button>
@@ -19,6 +20,7 @@
           <p v-if="location">Added at location: {{location.latitude}}, {{location.longitude}}</p>
         </div>
       </body>
+
 </template>
 
 <script>
@@ -99,6 +101,13 @@ import UserInputMap from "../components/userInputMap.vue";
               infoWindow.setContent("Your Location");
               infoWindow.open(map);
               map.setCenter(pos);
+
+              google.maps.event.addListener(map, "click", (mapsMouseEvent) => {
+                infoWindow.close();
+                infoWindow.setPosition(mapsMouseEvent.latLng)
+                infoWindow.setContent(mapsMouseEvent.latLng.lat() + " / " + mapsMouseEvent.latLng.lng());
+                infoWindow.open(map);
+              });
             },
               () => {
                 handleLocationError(true, infoWindow, map.getCenter());
@@ -127,12 +136,11 @@ import UserInputMap from "../components/userInputMap.vue";
 
           marker.setMap(map);
 
+          let locationVar = this.locArray[i].location.info;
+
           google.maps.event.addListener(marker, 'click', function(){
-          // return function(){
-          //   infoWindow.setContent(locArray[i].info);
-          //   infoWindow.open(map, marker);
-          // }
-            infoWindow.setContent('<p> text </p>' + '<br>' + '<button @click="upvote">Upvote</button>'
+
+            infoWindow.setContent('<p>' + locationVar + '</p>' + '<br>' + '<button @click="upvote">Upvote</button>'
              + '<button @click="downvote">Downvote</button>');
 
             infoWindow.open(map, this);
@@ -267,11 +275,20 @@ import UserInputMap from "../components/userInputMap.vue";
 }
 </script>
 
-<style scoped>
-  #map {
-    height: 80vh;
-    width: 80vw;
-    color: black;
-    margin-top: 30%;
+<style>
+  .pollpic {
+    object-fit:fill; 
+    width:100%;  
+    height: 105%;
+    margin-top: -1%; 
+    opacity: 75%;
+  }
+  .logo {
+    position: absolute; 
+    object-fit: contain; 
+    width: 50%; 
+    height: auto; 
+    position: absolute; 
+    top: 10%; 
   }
 </style>
