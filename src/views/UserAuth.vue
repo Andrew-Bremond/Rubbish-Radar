@@ -6,9 +6,9 @@
       Email: <input type="text" style="text-align: left; margin-left: 10%;" v-model.trim="email" placeholder="example@email.com"/>
       <br>
       Password: <input type="password" v-model.trim="password" placeholder="password"/>
-      <tempalte v-if="password != null && password.length != 0 && password.length < 6" style="color:red">
+      <template v-if="password != null && password.length != 0 && password.length < 6" style="color:red">
         <br>Your password must be at least 6 characters
-      </tempalte>
+      </template>
       <br>
       <br>
       <br>
