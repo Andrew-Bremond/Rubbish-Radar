@@ -1,3 +1,6 @@
+<template>
+  <!-- need at least 1 template or script to run -->
+</template>
 <!-- <template>
     <div id="login">
       <p>
