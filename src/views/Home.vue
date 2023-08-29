@@ -139,11 +139,8 @@ import UserInputMap from "../components/userInputMap.vue";
           let locationVar = this.locArray[i].location.info;
 
           google.maps.event.addListener(marker, 'click', function(){
-          
             infoWindow.setContent('<p>' + locationVar + '</p>' + '<p>' + type + '</p>' + '<button class = "trashButtons" @click="upvote">Upvote</button>'
              + '<button class = "trashButtons" @click="downvote">Downvote</button>');
-
-
             infoWindow.open(map, this);
           });
 

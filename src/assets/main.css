@@ -133,11 +133,11 @@ ul li {
   padding-left: 25px;
 }
 
-ul li:before {
-  content: '🌿';
+li.aboutUs:before {
   position: absolute;
   left: 0;
   top: 0;
+  content: '🌿';
 }
 
 .trashButtons {
