@@ -34,7 +34,7 @@ import {
     query,
     where,
     deleteDoc,
-QuerySnapshot,
+    QuerySnapshot,
 } from 'firebase/firestore'
 
   export default {
@@ -46,17 +46,18 @@ QuerySnapshot,
           locArray: [],
       };
     },
-    mounted() {
+    async mounted() {
       if (!window.google) {
         const script = document.createElement('script');
         script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBkkgbhppn40r-DjzpnkAg0q7waZKQzsr8&callback=initMap&map_ids=74db84a2f64c1375';
         document.body.appendChild(script);
-        script.onload = () => {
-          this.getLocations();
+        script.onload = async() => {
+          await this.getLocations();
           this.initMap();
+          console.log(this.locArray);
         };
       } else {
-        this.getLocations();
+        await this.getLocations();
         this.initMap();
       }
     },
@@ -113,7 +114,6 @@ QuerySnapshot,
           infoWindow.open(map);
         }
 
-
         for(let i = 0; i < this.locArray.length; i ++){
           let type = this.locArray[i].type;
           let marker = new google.maps.Marker({
@@ -138,21 +138,21 @@ QuerySnapshot,
    
       //let greenMarker = '../images/greenMarker.png';
       let myLatLng = new google.maps.LatLng(35.7148, 139.7967);
-      let marker = new google.maps.Marker({
+      let staticMarker = new google.maps.Marker({
         position: myLatLng,
         title : "trashbin by Sensoji"
         // icon: greenMarker
       });
-      google.maps.event.addListener(marker, 'click', function(){
+      google.maps.event.addListener(staticMarker, 'click', function(){
         infoWindow.setContent('<p> this.locArray[i].info </p>' + '<br>' + '<button @click="upvote">Upvote</button>'
           + '<button @click="downvote">Downvote</button>');
 
         infoWindow.open(map, this);
       });
 
-      google.maps.event.trigger(marker, 'click');
+      google.maps.event.trigger(staticMarker, 'click');
 
-      marker.setMap(map);
+      staticMarker.setMap(map);
     },
     async addTrashCan() {
       if("geolocation" in navigator){
@@ -243,19 +243,11 @@ QuerySnapshot,
     },
     async getLocations(){
       try {
-        const querySnapshot = await firebase.firestore().collection('locations').get();
-        querySnapshot.forEach(doc => {
-          const check = doc.data().Name;
-          console.log(check);
-          this.locArray.push(check);
+        const locCollection = collection(db, 'locations');
+        const locationDocs = await getDocs(locCollection);
+        locationDocs.forEach(doc => {
+          this.locArray = [...this.locArray, doc.data()];
         });
-        return this.locArray;
-        // const locCollection = collection(db, 'locations');
-        // const locationDocs = await getDocs(locCollection);
-        //this.locArray = locationDocs.docs.map(doc => doc.data().location);
-        // let locArray = this.updates.collection.get().then(querySnapshot => {
-        //   locArray = querySnapshot.docs.map(doc => doc.data())
-        // })
       } catch (error){
         console.error("Error getting location: ", error);
       }
