@@ -55,9 +55,9 @@
   
   <style scoped>
     div #map {
-      height: 80vh;
-      width: 80vw;
+      height: 92vh;
+      width: 92vw;
       color: black;
-      margin-top: 30%;
+      margin-top: 5%;
     }
   </style>

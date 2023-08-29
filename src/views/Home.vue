@@ -1,7 +1,9 @@
 <template>
-  <img src="../images/rubbish-radar-high-resolution-color-logo.png" alt="Rubbish_Radar_Logo_pic" 
-    style = "width: 100%; top: 35px; object-fit: none; height: 400px; position: absolute;">
-
+  <!-- <img src="../images/rubbish-radar-high-resolution-color-logo.png" alt="Rubbish_Radar_Logo_pic" 
+    style = "width: 100%; top: 35px; object-fit: none; height: 400px; position: absolute;"> -->
+    <img class="pollpic" src="../images/pollution.jpg" alt="pollution pic">
+    <img class="logo" src="../images/new_logo.png" alt="Rubbish_Radar_Logo_pic">
+    
     <Map></Map>
       <body>
         <UserInputMap></UserInputMap>
@@ -18,6 +20,7 @@
           <p v-if="location">Added at location: {{location.latitude}}, {{location.longitude}}</p>
         </div>
       </body>
+
 </template>
 
 <script>
@@ -247,11 +250,20 @@ import UserInputMap from "../components/userInputMap.vue";
 }
 </script>
 
-<style scoped>
-  #map {
-    height: 80vh;
-    width: 80vw;
-    color: black;
-    margin-top: 30%;
+<style>
+  .pollpic {
+    object-fit:fill; 
+    width:100%;  
+    height: 105%;
+    margin-top: -1%; 
+    opacity: 75%;
+  }
+  .logo {
+    position: absolute; 
+    object-fit: contain; 
+    width: 50%; 
+    height: auto; 
+    position: absolute; 
+    top: 10%; 
   }
 </style>
