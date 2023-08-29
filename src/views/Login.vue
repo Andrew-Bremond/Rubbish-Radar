@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <div id="login">
       <p>
         or Sign In with Google <br>
@@ -96,4 +96,4 @@ export default {
     width: 50%;
   }
   </style>
-  
+   -->
