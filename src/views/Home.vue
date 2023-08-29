@@ -106,7 +106,7 @@ import {
 
 
           for(let i = 0; i < this.locArray.length; i ++){
-            let type = this.locArray[i].type;
+            //let type = this.locArray[i].type;
             let marker = new google.maps.Marker({
               position: new google.maps.LatLng(this.locArray[i].latitude, this.locArray[i].longitude),
               map: map
@@ -126,10 +126,9 @@ import {
       let marker = new google.maps.Marker({
         position: myLatLng,
         title : "trashbin by Sensoji"
-        // icon: greenMarker
       });
 
-
+      marker.setIcon(greenMarker);
       marker.setMap(map);
     },
     async addTrashCan() {
