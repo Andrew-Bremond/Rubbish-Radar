@@ -30,18 +30,17 @@ export default {
         this.isLoggedIn = true
         this.$router.replace('home');
       } catch (err) {
-        alert('Oops. ' + err.message);
+        alert('Error: ' + err.message);
       }
+        const userCredential = await signInWithEmailAndPassword(auth, this.email, this.password);
+        this.isLoggedIn = true
+        this.$router.replace('home');
     },
     async socialLogin() {
       const auth = getAuth();
       const provider = new GoogleAuthProvider();
-      try {
         const result = await signInWithPopup(auth, provider);
         this.$router.replace('home');
-      } catch (err) {
-        alert('Oops. ' + err.message);
-      }
     },
   },
 };
