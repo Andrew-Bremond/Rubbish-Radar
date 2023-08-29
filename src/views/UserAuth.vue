@@ -1,138 +1,125 @@
 <template>
-    <div class="userLogin">
-        <template v-if="!userLoggedIn">
-            <h2 style="text-align: center;">Login / Sign Up</h2>
-      <!-- TODO: We should hide this if a user is already logged in and show logout instead -->
-      Email: <input type="text" style="text-align: left; margin-left: 10%;" v-model.trim="email" placeholder="example@email.com"/>
+  <div class="userLogin">
+    <template v-if="!userLoggedIn">
+      <h2 style="text-align: center;">Login / Sign Up</h2>
+      Email: <input type="text" v-model.trim="email" placeholder="example@email.com"/>
       <br>
       Password: <input type="password" v-model.trim="password" placeholder="password"/>
-      <template v-if="password != null && password.length != 0 && password.length < 6" style="color:red">
+      <template v-if="password && password.length < 6" style="color:red">
         <br>Your password must be at least 6 characters
       </template>
+      <br><br><br>
+      <button @click="createUser">Create User</button>
       <br>
-      <br>
-      <br>
-      <button @click="createUser()">Create User</button>
-      <br>
-      <button @click="login()">Login</button>
-      <!-- TODO: Update the styling here to color:red -->
+      <button @click="login">Login</button>
       <template v-if="userNotFound">
-        <br>
-        User not found
+        <br>User not found
       </template>
       <template v-if="invalidPassword">
-        <br>
-        Invalid password
+        <br>Invalid password
       </template>
+      <p>
+        or Sign In with Google <br>
+        <button class="social-button" @click="socialLogin">
+          <img alt="Google Logo" src="../assets/google-logo4.png">
+        </button>
+      </p>
     </template>
     <template v-else>
-      <button @click="signOut()">Sign Out</button>
+      <button @click="signOut">Sign Out</button>
     </template>
-    <Login />
-    </div>
+  </div>
 </template>
 
-
-
 <script>
-import { auth } from '../firebaseResources';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
-import Login from '../views/Login.vue';
+import { getAuth, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+
+const auth = getAuth();
 
 export default {
-  // For this component to work you'll need to enable auth in your project and minimally enable
-  // email/password as a authentication provider
-  components : {
-    Login
-  },
-  
   data() {
     return {
       email: null,
       password: null,
-
       userNotFound: false,
       invalidPassword: false,
-
       userLoggedIn: false,
-    }
+    };
   },
   mounted() {
-    // Here we check the user and handle their state manually, which is less than ideal and not the
-    // recommended method. We do this for two reasons:
-    // - To give you an example of how to access user state manually for cases you need it
-    // - To avoid the introduction of stores which are taught later in the curriculum
-    // The "correct" way to do this is to use the onAuthStateChanged to detect changes to the users
-    // status and write that to a store so that its available across all pages. This will reduce the
-    // amount of boilerplate code you have to write to check user state and be prone to errors around
-    // user state transitions
     const user = auth.currentUser;
-    if (user != null) {
+    if (user) {
       this.userLoggedIn = true;
     }
   },
   methods: {
     async login() {
       try {
-        // Reset error messages
         this.userNotFound = false;
         this.invalidPassword = false;
 
         await signInWithEmailAndPassword(auth, this.email, this.password);
-
-        // Mark that we are now logged in
         this.userLoggedIn = true;
-      } catch(err) {
-        if (err.code) {
-          // Process auth specific error messages and display them to the user
-          if (err.code === 'auth/wrong-password') {
-            console.error('Error in login, wrong password');
-            this.invalidPassword = true;
-          } else if (err.code === 'auth/user-not-found') {
-            console.error('Error in login, user not found');
-            this.userNotFound = true;
-          }
-        } else {
-          // All other errors are logged to the console
-          console.error('Error in login', err);
+        this.$router.replace('/UserAuth'); 
+      } catch (err) {
+        if (err.code === 'auth/wrong-password') {
+          this.invalidPassword = true;
+        } else if (err.code === 'auth/user-not-found') {
+          this.userNotFound = true;
         }
       }
     },
     async createUser() {
       try {
-        // Reset error messages
         this.userNotFound = false;
         this.invalidPassword = false;
 
         await createUserWithEmailAndPassword(auth, this.email, this.password);
-
-        // Mark that we are now logged in
         this.userLoggedIn = true;
-        console.log('Current user', auth.currentUser);
-      } catch(err) {
+        this.$router.replace('/UserAuth'); // Navigate to the sign-out page
+      } catch (err) {
         console.error('Error in createUser', err);
       }
     },
     async signOut() {
       try {
-        if (auth.currentUser) {
-          await signOut(auth);
-
-          // Mark that we are now logged out
-          this.userLoggedIn = false;
-        } else {
-          console.warn('No user signed in');
-        }
-      } catch(err) {
+        await signOut(auth);
+        this.userLoggedIn = false;
+      } catch (err) {
         console.error('Error in signOut', err);
       }
-    }
-  }
-}
+    },
+    async socialLogin() {
+      const provider = new GoogleAuthProvider();
+      try {
+        const result = await signInWithPopup(auth, provider);
+        this.userLoggedIn = true;
+        this.$router.replace('/UserAuth');  // Navigate to the sign-out page
+      } catch (err) {
+        console.error('Error in socialLogin', err);
+      }
+    },
+  },
+};
 </script>
 
 <style>
-    .userLogin {
-        margin-top: 10%;
-    }
+  .userLogin {
+    margin-top: 10%;
+  }
+  .social-button {
+    width: 50px;
+    background: white;
+    padding: 10px;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
+    outline: 0;
+    border: 0;
+  }
+  .social-button:active {
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.1);
+  }
+  .social-button img {
+    width: 50%;
+  }
 </style>
