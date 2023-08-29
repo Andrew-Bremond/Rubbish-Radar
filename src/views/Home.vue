@@ -137,13 +137,13 @@ import {
           google.maps.event.trigger(marker, 'click');
         }
    
-      //let greenMarker = '../images/greenMarker.png';
-      // let myLatLng = new google.maps.LatLng(this.locArray[0].location.latitude, this.locArray[0].location.longitude);
-      // let staticMarker = new google.maps.Marker({
-      //   position: myLatLng,
-      //   title : "trashbin by Sensoji"
-      //   // icon: greenMarker
-      // });
+      //let greenMarker = "https://github.com/Rubbish-Radar/RubbishRadar/blob/master/src/images/greenMarker.png";
+      let myLatLng = new google.maps.LatLng(this.locArray[0].location.latitude, this.locArray[0].location.longitude);
+      let staticMarker = new google.maps.Marker({
+        position: myLatLng,
+        title : "trashbin by Sensoji",
+        icon: "RubbishRadar/src/images/greenMarker.png"
+      });
       // google.maps.event.addListener(staticMarker, 'click', function(){
       //   infoWindow.setContent('<p> this.locArray[i].info </p>' + '<br>' + '<button @click="upvote">Upvote</button>'
       //     + '<button @click="downvote">Downvote</button>');
@@ -153,7 +153,7 @@ import {
 
       // google.maps.event.trigger(staticMarker, 'click');
 
-      // staticMarker.setMap(map);
+       staticMarker.setMap(map);
     },
     async addTrashCan() {
       if("geolocation" in navigator){
