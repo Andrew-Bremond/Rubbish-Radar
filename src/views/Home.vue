@@ -101,6 +101,13 @@ import UserInputMap from "../components/userInputMap.vue";
               infoWindow.setContent("Your Location");
               infoWindow.open(map);
               map.setCenter(pos);
+
+              google.maps.event.addListener(map, "click", (mapsMouseEvent) => {
+                infoWindow.close();
+                infoWindow.setPosition(mapsMouseEvent.latLng)
+                infoWindow.setContent(mapsMouseEvent.latLng.lat() + " / " + mapsMouseEvent.latLng.lng());
+                infoWindow.open(map);
+              });
             },
               () => {
                 handleLocationError(true, infoWindow, map.getCenter());
