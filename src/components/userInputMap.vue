@@ -46,7 +46,7 @@ async addCustom() {
                   latitude: this.latit,
                   longitude: this.longit,
                   info: this.additionalInfo,
-                  type: 'customBin',
+                  type: 'Custom Trash Bin',
                   upvoteCount: 0,
                   downvoteCount: 0,
               };
