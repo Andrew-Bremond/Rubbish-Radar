@@ -139,16 +139,34 @@ import UserInputMap from "../components/userInputMap.vue";
           let locationVar = this.locArray[i].location.info;
 
           google.maps.event.addListener(marker, 'click', function(){
-
+          
             infoWindow.setContent('<p>' + locationVar + '</p>' + '<p>' + type + '</p>' + '<button class = "trashButtons" @click="upvote">Upvote</button>'
              + '<button class = "trashButtons" @click="downvote">Downvote</button>');
+
 
             infoWindow.open(map, this);
           });
 
           google.maps.event.trigger(marker, 'click');
         }
+   
+      let greenMarker = "Rubbish-Radar/RubbishRadar/blob/master/src/images/greenMarker.png";
+      let myLatLng = new google.maps.LatLng(35.7148, 139.7967);
+      let staticMarker = new google.maps.Marker({
+        position: myLatLng,
+        title : "trashbin by Sensoji",
+        icon: greenMarker
+      });
+      // google.maps.event.addListener(staticMarker, 'click', function(){
+      //   infoWindow.setContent('<p> this.locArray[i].info </p>' + '<br>' + '<button @click="upvote">Upvote</button>'
+      //     + '<button @click="downvote">Downvote</button>');
 
+      //   infoWindow.open(map, this);
+      // });
+
+      // google.maps.event.trigger(staticMarker, 'click');
+
+       staticMarker.setMap(map);
     },
     async addTrashCan() {
       if("geolocation" in navigator){
@@ -161,7 +179,7 @@ import UserInputMap from "../components/userInputMap.vue";
                   latitude: position.coords.latitude,
                   longitude: position.coords.longitude,
                   info: this.additionalInfo,
-                  type: 'trashcan',
+                  type: 'Trash Can',
                   upvoteCount: 0,
                   downvoteCount: 0,
               };
@@ -190,7 +208,7 @@ import UserInputMap from "../components/userInputMap.vue";
                   latitude: position.coords.latitude,
                   longitude: position.coords.longitude,
                   info: this.additionalInfo,
-                  type: 'recycling',
+                  type: 'Recycling Bin',
                   upvoteCount: 0,
                   downvoteCount: 0,
               };
@@ -219,7 +237,7 @@ import UserInputMap from "../components/userInputMap.vue";
                   latitude: position.coords.latitude,
                   longitude: position.coords.longitude,
                   info: this.additionalInfo,
-                  type: 'combustibles',
+                  type: 'Combustible Bin',
                   upvoteCount: 0,
                   downvoteCount: 0,
               };
