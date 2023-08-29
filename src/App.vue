@@ -26,6 +26,7 @@ nav {
   justify-content: right;
   padding-top: 10px;
   padding-bottom: 10px;
+  z-index: 9999;
 }
 
 nav a.router-link-exact-active {
