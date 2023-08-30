@@ -1,11 +1,15 @@
 <template>
-    <div class = "userInput">
+    <div class = "userInput" ref="userIn">
+        <h1 style="text-align: center;">Add Trash Can</h1>
           <input v-model="additionalInfo" placeholder="Info About Location">
-          <input v-model="binType" placeholder="Trash / Recycle / Combustible">
           <input v-model="latit" placeholder="Latitude">
           <input v-model="longit" placeholder="Longitude">
           <br>
-          <button class = "trashButtons" @click="addCustom"> Add Bin </button>
+          <button class = "trashButtons" @click="addTrashCan">Add Trash Can</button>
+          <!-- <p v-if="location">Trash can added at location: {{location.latitude}}, {{location.longitude}}</p> -->
+          <button class = "trashButtons" @click="addRecyclingBin">Add Recycling Bin</button>
+          <!-- <p v-if="location">Recycling Bin added at location: {{location.latitude}}, {{location.longitude}}</p> -->
+          <button class = "trashButtons" @click="addCombustible">Add Combustible Bin</button>
           <p v-if="location">Added at location: {{location.latitude}}, {{location.longitude}}</p>
     </div>
 </template>
@@ -64,7 +68,93 @@ async addCustom() {
       } else {
           console.error("Location services not available in this browser")
       }
-    }
+    },
+    async addTrashCan() {
+      if("geolocation" in navigator){
+          try{
+              const position = await new Promise((resolve, reject) => {
+                  navigator.geolocation.getCurrentPosition(resolve, reject);
+              });
+
+              this.location = {
+                latitude: this.latit,
+                  longitude: this.longit,
+                  info: this.additionalInfo,
+                  type: 'Trash',
+                  upvoteCount: 0,
+                  downvoteCount: 0,
+              };
+              const docReference = await addDoc(
+                  collection(db, 'locations'),
+                  {
+                      location: this.location,
+                  }
+              );
+          } catch (error) {
+              console.error("Error getting location: ", error);
+          }
+      } else {
+          console.error("Location services not available in this browser")
+      }
+    },
+    async addRecyclingBin() {
+      if("geolocation" in navigator){
+          try{
+              const position = await new Promise((resolve, reject) => {
+                  navigator.geolocation.getCurrentPosition(resolve, reject);
+              });
+
+              this.location = {
+                latitude: this.latit,
+                  longitude: this.longit,
+                  info: this.additionalInfo,
+                  type: 'Recycle',
+                  upvoteCount: 0,
+                  downvoteCount: 0,
+              };
+
+              const docReference = await addDoc(
+                  collection(db, 'locations'),
+                  {
+                      location: this.location,
+                  }
+              );
+          } catch (error) {
+              console.error("Error getting location: ", error);
+          }
+      } else {
+          console.error("Location services not available in this browser")
+      }
+    },
+    async addCombustible() {
+      if("geolocation" in navigator){
+          try{
+              const position = await new Promise((resolve, reject) => {
+                  navigator.geolocation.getCurrentPosition(resolve, reject);
+              });
+
+              this.location = {
+                latitude: this.latit,
+                  longitude: this.longit,
+                  info: this.additionalInfo,
+                  type: 'Combustible',
+                  upvoteCount: 0,
+                  downvoteCount: 0,
+              };
+
+              const docReference = await addDoc(
+                  collection(db, 'locations'),
+                  {
+                      location: this.location,
+                  }
+              );
+          } catch (error) {
+              console.error("Error getting location: ", error);
+          }
+      } else {
+          console.error("Location services not available in this browser")
+      }
+    },
 }
 }
 </script>
