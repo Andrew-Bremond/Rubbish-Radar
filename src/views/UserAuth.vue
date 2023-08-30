@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import { getAuth, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { getAuth, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 
 const auth = getAuth();
 
@@ -67,9 +67,13 @@ export default {
   },
   mounted() {
     const user = auth.currentUser;
-    if (user) {
-      this.userLoggedIn = true;
-    }
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        this.userLoggedIn = true;
+      } else {
+        this.userLoggedIn = false;
+      }
+    });
   },
   methods: {
     async login() {
