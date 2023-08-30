@@ -1,6 +1,7 @@
 <template>
     <div class = "userInput">
           <input v-model="additionalInfo" placeholder="Info About Location">
+          <input v-model="binType" placeholder="Trash / Recycle / Combustible">
           <input v-model="latit" placeholder="Latitude">
           <input v-model="longit" placeholder="Longitude">
           <br>
@@ -46,7 +47,7 @@ async addCustom() {
                   latitude: this.latit,
                   longitude: this.longit,
                   info: this.additionalInfo,
-                  type: 'Custom Trash Bin',
+                  type: this.binType,
                   upvoteCount: 0,
                   downvoteCount: 0,
               };
