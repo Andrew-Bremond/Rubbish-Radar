@@ -3,11 +3,18 @@
     style = "width: 100%; top: 35px; object-fit: none; height: 400px; position: absolute;"> -->
     <img class="pollpic" src="../images/pollution.jpg" alt="pollution pic">
     <img class="logo" src="../images/new_logo.png" alt="Rubbish_Radar_Logo_pic">
-    
+    <!-- <a href="#mapArea">Go to Map</a>  
+    <a href="#userIn">Add to Map</a> -->
+    <div class="scrollButtonContainer">
+      <button class="scrollButton" @click="scrollToMap">Go to Map</button>
+      <button class="scrollButton" @click="scrollToUserIn">Add to Map</button>
+    </div>
+
+    <div ref="mapArea"><!-- to scroll to the map area --></div>
     <Map></Map>
       <body>
         <UserInputMap></UserInputMap>
-        <div class="userInput">
+        <div class="userInput" ref="userIn">
           <h1 style="text-align: center;">Add Trash Can</h1>
           <br>
           <input v-model="additionalInfo" placeholder="Info About Location">
@@ -322,6 +329,22 @@ import { ref, toHandlers } from "vue";
         console.log("Error downvoting: ", error);
       }
     },
+    scrollToMap(){
+      const element = this.$refs.mapArea;
+        const top = element.offsetTop;
+        window.scrollTo({
+            top: top,
+            behavior: 'smooth'
+        });
+    },
+    scrollToUserIn(){
+      const element = this.$refs.userIn;
+        const top = element.offsetTop;
+        window.scrollTo({
+            top: top,
+            behavior: 'smooth'
+        });
+    },
   },
 }
 </script>
@@ -330,16 +353,69 @@ import { ref, toHandlers } from "vue";
   .pollpic {
     object-fit:fill; 
     width:100%;  
-    height: 105%;
+    height: 850px;
     margin-top: -1%; 
-    opacity: 75%;
+    opacity: 60%;
   }
   .logo {
     position: absolute; 
     object-fit: contain; 
-    width: 50%; 
+    width: 55%; 
     height: auto; 
     position: absolute; 
-    top: 10%; 
+    top: 5%; 
+    /* box-shadow: 0 0 10px 2px rgba(15, 15, 15); */
+  }
+  .scrollButton {
+    text-align: center;
+    background-color: #b9b9b999;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s ease;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 130%;
+    font-weight: 120%;
+    width: 150px;
+    height: 40px;
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-top: -170px;
+    margin-bottom: 2px;
+    position: relative;
+    /* padding: 5%; */
+    z-index: 99;
+    box-shadow: 0 0 20px 5px rgba(15, 15, 15);
+  }
+  .scrollButton:hover {
+  background-color: #b9b9b9bc;
+  transition: 0.5s;
+  }
+  .scrollButton::after{
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 5px;
+    top: 90%;
+    left: 0;
+    transition: transform 0.5s;
+    transform: scaleX(0);
+    transform-origin: center;
+    background-color: #31c48d;
+    border-radius: 30px;
+  }
+  .scrollButton:hover::after{
+    transform: scaleX(1);
+    transform-origin: center;
+  }
+  .scrollButton:active {
+    background-color: rgba(255, 255, 255, 0.253);
+  }
+  .scrollButtonContainer {
+    display:flex;
   }
 </style>
