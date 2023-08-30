@@ -140,31 +140,39 @@ import { ref, toHandlers } from "vue";
           });
         });
 
-        for(let i = 0; i < this.locArray.length; i ++){
-          let type = this.locArray[i].location.type;
+        for (let i = 0; i < this.locArray.length; i++) {
+          let locationObj = this.locArray[i];
+          let type = locationObj.location.type;
           let marker = new google.maps.Marker({
-            position: new google.maps.LatLng(this.locArray[i].location.latitude, this.locArray[i].location.longitude),
+            position: new google.maps.LatLng(locationObj.location.latitude, locationObj.location.longitude),
             map: map
           });
-          
           marker.setMap(map);
 
-          let locationVar = this.locArray[i].location.info;
-          let latCoor = this.locArray[i].location.latitude;
-          let longCoor = this.locArray[i].location.longitude;
-          google.maps.event.addListener(marker, 'click', function(){
+          let locationVar = locationObj.location.info;
+          let latCoor = locationObj.location.latitude;
+          let longCoor = locationObj.location.longitude;
 
-          
-            infoWindow.setContent('<p>' + locationVar + '</p>' + '<p>' + type + '</p>' + 
-            '<p>' + "(" + latCoor + ", " + longCoor + ")" + '</p>' +
-            '<button class = "trashButtons" @click=upvote(this.locArray[i].id)>Upvote</button>' + 
-            '<button class = "trashButtons" @click="downvote(this.locArray[i].id)">Downvote</button>');
+          google.maps.event.addListener(marker, 'click', () => {
+            infoWindow.setContent(`
+              <p>${locationVar}</p>
+              <p>${type}</p>
+              <p>(${latCoor}, ${longCoor})</p>
+              <button id="upvoteButton" class="trashButtons">Upvote</button>
+              <button id="downvoteButton" class="trashButtons">Downvote</button>
+            `);
 
-            infoWindow.open(map, this);
+            infoWindow.open(map, marker);
+            google.maps.event.addListenerOnce(infoWindow, 'domready', () => {
+              document.getElementById("upvoteButton").addEventListener("click", () => {
+                this.upvote(locationObj.id);
+              });
+              document.getElementById("downvoteButton").addEventListener("click", () => {
+                this.downvote(locationObj.id);
+              });
+            });
           });
-          
-          google.maps.event.trigger(marker, 'click');
-        }
+  }
    
       //let greenMarker = "Rubbish-Radar/RubbishRadar/blob/master/src/images/greenMarker.png";
       //let myLatLng = new google.maps.LatLng(35.7148, 139.7967);
@@ -283,14 +291,12 @@ import { ref, toHandlers } from "vue";
     },
     async upvote(docID){
       try {
-        //console.log('test');
         const docRef = doc(db, "locations", docID);
         const docSnap = await getDoc(docRef);
         console.log(docSnap.data());
         const currentData = docSnap.data();
         const updateUpvote = currentData.location.upvoteCount + 1;
         console.log(updateUpvote);
-        //console.log('test');
         await updateDoc(docRef, {
           'location.upvoteCount': updateUpvote,
         });
