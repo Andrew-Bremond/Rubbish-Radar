@@ -154,10 +154,10 @@ import { ref, toHandlers } from "vue";
           icon: iconBase + "blu-blank.png",
         },
         Recycle: {
-          icon: iconBase + "R.png",
+          icon: iconBase + "grn-blank.png",
         },
         Combustible: {
-          icon: iconBase + "grn-blank.png",
+          icon: iconBase + "pink-blank.png",
         },
       };
 
