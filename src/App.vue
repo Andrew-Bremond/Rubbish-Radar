@@ -10,7 +10,6 @@
       <RouterLink class="userAuthLink" to = "/UserAuth"> Login / SignUp </RouterLink>
     </nav>  
   <RouterView/>
-  
 </template>
 
 <style scoped>

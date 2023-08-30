@@ -1,15 +1,16 @@
 <template>
     <div class = "userInput" ref="userIn">
         <h1 style="text-align: center;">Add Trash Can</h1>
+        <h3 style="border-bottom: 0; text-align: center;">Add trash from custom location</h3>
           <input v-model="additionalInfo" placeholder="Info About Location">
           <input v-model="latit" placeholder="Latitude">
           <input v-model="longit" placeholder="Longitude">
           <br>
-          <button class = "trashButtons" @click="addTrashCan">Add Trash Can</button>
+          <button id="leftButton" class = "trashButtons" @click="addTrashCan">Add Trash Can</button>
           <!-- <p v-if="location">Trash can added at location: {{location.latitude}}, {{location.longitude}}</p> -->
-          <button class = "trashButtons" @click="addRecyclingBin">Add Recycling Bin</button>
+          <button id="midButton" class = "trashButtons" @click="addRecyclingBin">Add Recycling Bin</button>
           <!-- <p v-if="location">Recycling Bin added at location: {{location.latitude}}, {{location.longitude}}</p> -->
-          <button class = "trashButtons" @click="addCombustible">Add Combustible Bin</button>
+          <button id="rightButton" class = "trashButtons" @click="addCombustible">Add Combustible Bin</button>
           <p v-if="location">Added at location: {{location.latitude}}, {{location.longitude}}</p>
     </div>
 </template>
@@ -62,6 +63,9 @@ async addCustom() {
                       location: this.location,
                   }
               );
+              this.additionalInfo = '';
+              this.latit = '';
+              this.longit = '';
           } catch (error) {
               console.error("Error getting location: ", error);
           }
@@ -90,6 +94,9 @@ async addCustom() {
                       location: this.location,
                   }
               );
+              this.additionalInfo = '';
+              this.latit = '';
+              this.longit = '';
           } catch (error) {
               console.error("Error getting location: ", error);
           }
@@ -119,6 +126,9 @@ async addCustom() {
                       location: this.location,
                   }
               );
+              this.additionalInfo = '';
+              this.latit = '';
+              this.longit = '';
           } catch (error) {
               console.error("Error getting location: ", error);
           }
@@ -148,6 +158,9 @@ async addCustom() {
                       location: this.location,
                   }
               );
+              this.additionalInfo = '';
+              this.latit = '';
+              this.longit = '';
           } catch (error) {
               console.error("Error getting location: ", error);
           }
