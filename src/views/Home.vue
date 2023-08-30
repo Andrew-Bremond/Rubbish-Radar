@@ -241,6 +241,7 @@ import { ref, toHandlers } from "vue";
                       location: this.location,
                   }
               );
+              this.additionalInfo = '';
           } catch (error) {
               console.error("Error getting location: ", error);
           }
@@ -270,6 +271,7 @@ import { ref, toHandlers } from "vue";
                       location: this.location,
                   }
               );
+              this.additionalInfo = '';
           } catch (error) {
               console.error("Error getting location: ", error);
           }
@@ -299,6 +301,7 @@ import { ref, toHandlers } from "vue";
                       location: this.location,
                   }
               );
+              this.additionalInfo = '';
           } catch (error) {
               console.error("Error getting location: ", error);
           }

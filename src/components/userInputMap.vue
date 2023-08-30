@@ -63,6 +63,9 @@ async addCustom() {
                       location: this.location,
                   }
               );
+              this.additionalInfo = '';
+              this.latit = '';
+              this.longit = '';
           } catch (error) {
               console.error("Error getting location: ", error);
           }
@@ -91,6 +94,9 @@ async addCustom() {
                       location: this.location,
                   }
               );
+              this.additionalInfo = '';
+              this.latit = '';
+              this.longit = '';
           } catch (error) {
               console.error("Error getting location: ", error);
           }
@@ -120,6 +126,9 @@ async addCustom() {
                       location: this.location,
                   }
               );
+              this.additionalInfo = '';
+              this.latit = '';
+              this.longit = '';
           } catch (error) {
               console.error("Error getting location: ", error);
           }
@@ -149,6 +158,9 @@ async addCustom() {
                       location: this.location,
                   }
               );
+              this.additionalInfo = '';
+              this.latit = '';
+              this.longit = '';
           } catch (error) {
               console.error("Error getting location: ", error);
           }
