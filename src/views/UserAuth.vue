@@ -147,7 +147,7 @@ export default {
     width: 100%;  
     height: auto;
     margin-top: -25%; 
-    opacity: 15%;
+    opacity: 30%;
   }
   .social-button {
     background-color: #31c48d;
@@ -178,7 +178,7 @@ export default {
   }
   .inputBox {
     border-radius: 10px;
-    box-shadow:0 0 15px 4px rgba(0, 0, 0);
+    box-shadow:0 0 10px 2px rgba(15, 15, 15);
     border: 0;
   }
 </style>
