@@ -147,14 +147,28 @@ import { ref, toHandlers } from "vue";
           });
         });
 
+        var iconBase = 'http://maps.google.com/mapfiles/kml/paddle/';
+
+        const icons = {
+        Trash: {
+          icon: iconBase + "blu-blank.png",
+        },
+        Recycle: {
+          icon: iconBase + "R.png",
+        },
+        Combustible: {
+          icon: iconBase + "grn-blank.png",
+        },
+      };
+
         for (let i = 0; i < this.locArray.length; i++) {
           let locationObj = this.locArray[i];
           let type = locationObj.location.type;
           let marker = new google.maps.Marker({
             position: new google.maps.LatLng(locationObj.location.latitude, locationObj.location.longitude),
+            icon: icons[type].icon,
             map: map
           });
-          marker.setMap(map);
 
           let locationVar = locationObj.location.info;
           let latCoor = locationObj.location.latitude;
@@ -210,7 +224,7 @@ import { ref, toHandlers } from "vue";
                   latitude: position.coords.latitude,
                   longitude: position.coords.longitude,
                   info: this.additionalInfo,
-                  type: 'Trash Can',
+                  type: 'Trash',
                   upvoteCount: 0,
                   downvoteCount: 0,
               };
@@ -238,7 +252,7 @@ import { ref, toHandlers } from "vue";
                   latitude: position.coords.latitude,
                   longitude: position.coords.longitude,
                   info: this.additionalInfo,
-                  type: 'Recycling Bin',
+                  type: 'Recycle',
                   upvoteCount: 0,
                   downvoteCount: 0,
               };
@@ -267,7 +281,7 @@ import { ref, toHandlers } from "vue";
                   latitude: position.coords.latitude,
                   longitude: position.coords.longitude,
                   info: this.additionalInfo,
-                  type: 'Combustible Bin',
+                  type: 'Combustible',
                   upvoteCount: 0,
                   downvoteCount: 0,
               };
