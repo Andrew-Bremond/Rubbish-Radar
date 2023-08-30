@@ -15,15 +15,16 @@
       <body>
         <UserInputMap></UserInputMap>
         <div class="userInput" ref="userIn">
-          <h1 style="text-align: center;">Add Trash Can</h1>
+          <!-- <h1 style="text-align: center;">Add Trash Can</h1> -->
+          <h3 style="border-bottom: 0; text-align: center;">Add trash from your location</h3>
           <br>
           <input v-model="additionalInfo" placeholder="Info About Location">
           <br>
-          <button class = "trashButtons" @click="addTrashCan">Add Trash Can</button>
+          <button class = "trashButtons" id="leftButton" @click="addTrashCan">Add Trash Can</button>
           <!-- <p v-if="location">Trash can added at location: {{location.latitude}}, {{location.longitude}}</p> -->
-          <button class = "trashButtons" @click="addRecyclingBin">Add Recycling Bin</button>
+          <button class = "trashButtons" id="midButton" @click="addRecyclingBin">Add Recycling Bin</button>
           <!-- <p v-if="location">Recycling Bin added at location: {{location.latitude}}, {{location.longitude}}</p> -->
-          <button class = "trashButtons" @click="addCombustible">Add Combustable Bin</button>
+          <button class = "trashButtons" id="rightButton" @click="addCombustible">Add Combustable Bin</button>
           <br>
           <p v-if="location">Added at location: {{location.latitude}}, {{location.longitude}}</p>
         </div>
