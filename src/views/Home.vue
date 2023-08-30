@@ -178,12 +178,15 @@ import { ref, toHandlers } from "vue";
           let locationVar = locationObj.location.info;
           let latCoor = locationObj.location.latitude;
           let longCoor = locationObj.location.longitude;
-
+          let upvoteVar = locationObj.location.upvoteCount;
+          let downvoteVar = locationObj.location.downvoteCount;
           google.maps.event.addListener(marker, 'click', () => {
             infoWindow.setContent(`
               <p>${locationVar}</p>
               <p>${type}</p>
               <p>(${latCoor}, ${longCoor})</p>
+              <p>Upvote Count: ${upvoteVar}</p>
+              <p>Downvote Count: ${downvoteVar}</p>
               ${this.userLoggedIn ? `
               <button id="upvoteButton" class="trashButtons">Upvote</button>
               <button id="downvoteButton" class="trashButtons">Downvote</button> ` : ''}
@@ -233,6 +236,8 @@ import { ref, toHandlers } from "vue";
                   type: 'Trash',
                   upvoteCount: 0,
                   downvoteCount: 0,
+                  userUpvotes: [],
+                  userDownvotes: [],
               };
               const docReference = await addDoc(
                   collection(db, 'locations'),
@@ -261,6 +266,8 @@ import { ref, toHandlers } from "vue";
                   type: 'Recycle',
                   upvoteCount: 0,
                   downvoteCount: 0,
+                  userUpvotes: [],
+                  userDownvotes: [],
               };
 
               const docReference = await addDoc(
@@ -279,27 +286,29 @@ import { ref, toHandlers } from "vue";
     async addCombustible() {
       if("geolocation" in navigator){
           try{
-              const position = await new Promise((resolve, reject) => {
-                  navigator.geolocation.getCurrentPosition(resolve, reject);
-              });
+            const position = await new Promise((resolve, reject) => {
+                navigator.geolocation.getCurrentPosition(resolve, reject);
+            });
 
-              this.location = {
-                  latitude: position.coords.latitude,
-                  longitude: position.coords.longitude,
-                  info: this.additionalInfo,
-                  type: 'Combustible',
-                  upvoteCount: 0,
-                  downvoteCount: 0,
-              };
+            this.location = {
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude,
+                info: this.additionalInfo,
+                type: 'Combustible',
+                upvoteCount: 0,
+                downvoteCount: 0,
+                userUpvotes: [],
+                userDownvotes: [],
+            };
 
-              const docReference = await addDoc(
-                  collection(db, 'locations'),
-                  {
-                      location: this.location,
-                  }
-              );
+            const docReference = await addDoc(
+                collection(db, 'locations'),
+                {
+                    location: this.location,
+                }
+            );
           } catch (error) {
-              console.error("Error getting location: ", error);
+            console.error("Error getting location: ", error);
           }
       } else {
           console.error("Location services not available in this browser")
@@ -319,16 +328,20 @@ import { ref, toHandlers } from "vue";
     async upvote(docID){
       if(this.userLoggedIn){
         try {
+          const currUser = auth.currentUser;
           const docRef = doc(db, "locations", docID);
           const docSnap = await getDoc(docRef);
-          console.log(docSnap.data());
-          const currentData = docSnap.data();
-          const updateUpvote = currentData.location.upvoteCount + 1;
-          console.log(updateUpvote);
-          await updateDoc(docRef, {
-            'location.upvoteCount': updateUpvote,
-          });
-          console.log("Upvoted");
+          if(!docSnap.data().location.userUpvotes.includes(currUser.uid)){
+            const currentData = docSnap.data();
+            const updateUpvote = currentData.location.upvoteCount + 1;
+            const updatedUserArr = [...currentData.location.userUpvotes, currUser.uid];
+            await updateDoc(docRef, {
+              'location.upvoteCount': updateUpvote,
+              'location.userUpvotes': updatedUserArr,
+            });
+            console.log("Upvoted");
+          }
+          
         } catch (error){
           console.log("Error upvoting: ", error);
         }
@@ -337,21 +350,40 @@ import { ref, toHandlers } from "vue";
     async downvote(docID){
       if(this.userLoggedIn){
         try {
+          const currUser = auth.currentUser;
           const docRef = doc(db, "locations", docID);
           const docSnap = await getDoc(docRef);
-
-          const currentData = docSnap.data();
-          const updateDownvote = currentData.location.downvoteCount + 1;
-
-          await updateDoc(docRef, {
-            'location.downvoteCount': updateDownvote,
-          });
-          console.log("Downvoted"); 
-          await this.getLocations();
+          if(!docSnap.data().location.userDownvotes.includes(currUser.uid)){
+            const currData = docSnap.data();
+            const updateDownvote = currData.location.downvoteCount + 1;
+            const updatedUserArr = [...currData.location.userDownvotes, currUser.uid];
+            await updateDoc(docRef, {
+              'location.downvoteCount': updateDownvote,
+              'location.userDownvotes': updatedUserArr,
+            });
+            console.log("Downvoted");
+          }
         } catch (error){
           console.log("Error downvoting: ", error);
         }
       }
+      // if(this.userLoggedIn){
+      //   try {
+      //     const docRef = doc(db, "locations", docID);
+      //     const docSnap = await getDoc(docRef);
+
+      //     const currentData = docSnap.data();
+      //     const updateDownvote = currentData.location.downvoteCount + 1;
+
+      //     await updateDoc(docRef, {
+      //       'location.downvoteCount': updateDownvote,
+      //     });
+      //     console.log("Downvoted"); 
+      //     await this.getLocations();
+      //   } catch (error){
+      //     console.log("Error downvoting: ", error);
+      //   }
+      // }
     },
     scrollToMap(){
       const element = this.$refs.mapArea;
