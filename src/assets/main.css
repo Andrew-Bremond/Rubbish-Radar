@@ -181,3 +181,25 @@ input {
   padding: 10px;
   border-radius: 5px;
 }
+
+#rightButton {
+  border-radius: 0;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+#leftButton {
+  border-radius: 0;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+#midButton {
+  border-radius: 0;
+  margin-left: 0;
+  margin-right: 0;
+}
