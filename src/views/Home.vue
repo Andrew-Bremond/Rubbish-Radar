@@ -34,6 +34,7 @@
 <script>
 
 import { FirebaseError } from "firebase/app";
+import { auth } from "../firebaseResources";
 import Map from "../components/Map.vue"
 import { db } from "../firebaseResources"
 import {
@@ -63,6 +64,10 @@ import { ref, toHandlers } from "vue";
       };
     },
     async mounted() {
+      const user = auth.currentUser;
+      if (user){
+        this.userLoggedIn = true;
+      }
       if (!window.google) {
         const script = document.createElement('script');
         script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBkkgbhppn40r-DjzpnkAg0q7waZKQzsr8&callback=initMap&map_ids=4af310b3e8d84ead';
@@ -179,8 +184,9 @@ import { ref, toHandlers } from "vue";
               <p>${locationVar}</p>
               <p>${type}</p>
               <p>(${latCoor}, ${longCoor})</p>
+              ${this.userLoggedIn ? `
               <button id="upvoteButton" class="trashButtons">Upvote</button>
-              <button id="downvoteButton" class="trashButtons">Downvote</button>
+              <button id="downvoteButton" class="trashButtons">Downvote</button> ` : ''}
             `);
 
             infoWindow.open(map, marker);
@@ -311,36 +317,40 @@ import { ref, toHandlers } from "vue";
       }
     },
     async upvote(docID){
-      try {
-        const docRef = doc(db, "locations", docID);
-        const docSnap = await getDoc(docRef);
-        console.log(docSnap.data());
-        const currentData = docSnap.data();
-        const updateUpvote = currentData.location.upvoteCount + 1;
-        console.log(updateUpvote);
-        await updateDoc(docRef, {
-          'location.upvoteCount': updateUpvote,
-        });
-        console.log("Upvoted");
-      } catch (error){
-        console.log("Error upvoting: ", error);
+      if(this.userLoggedIn){
+        try {
+          const docRef = doc(db, "locations", docID);
+          const docSnap = await getDoc(docRef);
+          console.log(docSnap.data());
+          const currentData = docSnap.data();
+          const updateUpvote = currentData.location.upvoteCount + 1;
+          console.log(updateUpvote);
+          await updateDoc(docRef, {
+            'location.upvoteCount': updateUpvote,
+          });
+          console.log("Upvoted");
+        } catch (error){
+          console.log("Error upvoting: ", error);
+        }
       }
     },
     async downvote(docID){
-      try {
-        const docRef = doc(db, "locations", docID);
-        const docSnap = await getDoc(docRef);
+      if(this.userLoggedIn){
+        try {
+          const docRef = doc(db, "locations", docID);
+          const docSnap = await getDoc(docRef);
 
-        const currentData = docSnap.data();
-        const updateDownvote = currentData.location.downvoteCount + 1;
+          const currentData = docSnap.data();
+          const updateDownvote = currentData.location.downvoteCount + 1;
 
-        await updateDoc(docRef, {
-          'location.downvoteCount': updateDownvote,
-        });
-        console.log("Downvoted"); 
-        await this.getLocations();
-      } catch (error){
-        console.log("Error downvoting: ", error);
+          await updateDoc(docRef, {
+            'location.downvoteCount': updateDownvote,
+          });
+          console.log("Downvoted"); 
+          await this.getLocations();
+        } catch (error){
+          console.log("Error downvoting: ", error);
+        }
       }
     },
     scrollToMap(){
